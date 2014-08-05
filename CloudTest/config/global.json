@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Groapp": {
+            "applicationId": "EHGAyJwEryiRdex3QNWyrp7RtSOQW1K95pS6ciLP", 
+            "masterKey": "TDNQl4tVJKkDHjCeykZhzSeV60mJX58hjubWW7Wn"
+        }, 
+        "_default": {
+            "link": "Groapp"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.1"
+    }
+}
