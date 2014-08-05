@@ -115,7 +115,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4918FAA716DC4A5400C663F8 /* Parse Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4918FAA716DC4A5400C663F8 /* Parse UrbnEarth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parse UrbnEarth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4918FAAA16DC4A5400C663F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4918FAAC16DC4A5400C663F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4918FAAE16DC4A5400C663F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -195,9 +195,9 @@
 		4999CBE816DD599900C6C8FC /* PFStoreAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFStoreAppDelegate.h; sourceTree = "<group>"; };
 		4999CBE916DD599900C6C8FC /* PFStoreAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFStoreAppDelegate.m; sourceTree = "<group>"; };
 		4999CBEE16DD599900C6C8FC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Store/main.m; sourceTree = SOURCE_ROOT; };
-		4999CBEF16DD599900C6C8FC /* Store-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Store-Prefix.pch"; path = "Store/Store-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		4999CBEF16DD599900C6C8FC /* UrbnEarth-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UrbnEarth-Prefix.pch"; sourceTree = "<group>"; };
 		4999CBF216DD599900C6C8FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		4999CBF316DD599900C6C8FC /* Store-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Store-Info.plist"; path = "Store/Store-Info.plist"; sourceTree = SOURCE_ROOT; };
+		4999CBF316DD599900C6C8FC /* UrbnEarth-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UrbnEarth-Info.plist"; sourceTree = "<group>"; };
 		4999CBFC16DD628D00C6C8FC /* PFShippingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFShippingViewController.h; sourceTree = "<group>"; };
 		4999CBFD16DD628D00C6C8FC /* PFShippingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFShippingViewController.m; sourceTree = "<group>"; };
 		4999CBFF16DD635D00C6C8FC /* PFProducts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFProducts.h; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 		4918FAA816DC4A5400C663F8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4918FAA716DC4A5400C663F8 /* Parse Store.app */,
+				4918FAA716DC4A5400C663F8 /* Parse UrbnEarth.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,9 +330,9 @@
 				4999CBE516DD599900C6C8FC /* Classes */,
 				4999CBEA16DD599900C6C8FC /* Resources */,
 				4999CBEE16DD599900C6C8FC /* main.m */,
-				4999CBEF16DD599900C6C8FC /* Store-Prefix.pch */,
+				4999CBEF16DD599900C6C8FC /* UrbnEarth-Prefix.pch */,
 				4999CBF016DD599900C6C8FC /* en.lproj */,
-				4999CBF316DD599900C6C8FC /* Store-Info.plist */,
+				4999CBF316DD599900C6C8FC /* UrbnEarth-Info.plist */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -539,9 +539,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4918FAA616DC4A5400C663F8 /* Store */ = {
+		4918FAA616DC4A5400C663F8 /* UrbnEarth */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4918FAC416DC4A5400C663F8 /* Build configuration list for PBXNativeTarget "Store" */;
+			buildConfigurationList = 4918FAC416DC4A5400C663F8 /* Build configuration list for PBXNativeTarget "UrbnEarth" */;
 			buildPhases = (
 				4918FAA316DC4A5400C663F8 /* Sources */,
 				4918FAA416DC4A5400C663F8 /* Frameworks */,
@@ -551,9 +551,9 @@
 			);
 			dependencies = (
 			);
-			name = Store;
+			name = UrbnEarth;
 			productName = Store;
-			productReference = 4918FAA716DC4A5400C663F8 /* Parse Store.app */;
+			productReference = 4918FAA716DC4A5400C663F8 /* Parse UrbnEarth.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -566,7 +566,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Parse Inc.";
 			};
-			buildConfigurationList = 4918FAA216DC4A5400C663F8 /* Build configuration list for PBXProject "Store" */;
+			buildConfigurationList = 4918FAA216DC4A5400C663F8 /* Build configuration list for PBXProject "UrbnEarth" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -578,7 +578,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4918FAA616DC4A5400C663F8 /* Store */,
+				4918FAA616DC4A5400C663F8 /* UrbnEarth */,
 			);
 		};
 /* End PBXProject section */
@@ -773,10 +773,10 @@
 					"\"$(SRCROOT)/Store/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Store/Store-Prefix.pch";
-				INFOPLIST_FILE = "Store/Store-Info.plist";
+				GCC_PREFIX_HEADER = "Store/UrbnEarth-Prefix.pch";
+				INFOPLIST_FILE = "Store/UrbnEarth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "Parse Store";
+				PRODUCT_NAME = "Parse UrbnEarth";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -794,10 +794,10 @@
 					"\"$(SRCROOT)/Store/Vendor\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Store/Store-Prefix.pch";
-				INFOPLIST_FILE = "Store/Store-Info.plist";
+				GCC_PREFIX_HEADER = "Store/UrbnEarth-Prefix.pch";
+				INFOPLIST_FILE = "Store/UrbnEarth-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "Parse Store";
+				PRODUCT_NAME = "Parse UrbnEarth";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -808,7 +808,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4918FAA216DC4A5400C663F8 /* Build configuration list for PBXProject "Store" */ = {
+		4918FAA216DC4A5400C663F8 /* Build configuration list for PBXProject "UrbnEarth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4918FAC216DC4A5400C663F8 /* Debug */,
@@ -817,7 +817,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4918FAC416DC4A5400C663F8 /* Build configuration list for PBXNativeTarget "Store" */ = {
+		4918FAC416DC4A5400C663F8 /* Build configuration list for PBXNativeTarget "UrbnEarth" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4918FAC516DC4A5400C663F8 /* Debug */,
