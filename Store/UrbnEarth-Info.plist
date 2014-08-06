@@ -45,6 +45,10 @@
 	<string>${STRIPE_PUBLISHABLE_KEY}</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>FacebookAppID</key>
+	<string>1478164659091673</string>
+	<key>FacebookDisplayName</key>
+	<string>UrbnEarth</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -61,6 +65,15 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb816162151741967</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

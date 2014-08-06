@@ -5,6 +5,7 @@
 //  Created by Andrew Wang on 2/25/13.
 //
 #import <Parse/Parse.h>
+#import <FacebookSDK/FacebookSDK.h>
 #import "PFProductsViewController.h"
 #import "PFStoreAppDelegate.h"
 
@@ -14,6 +15,7 @@
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     [Parse setApplicationId:infoDictionary[@"PARSE_APPLICATION_ID"] clientKey:infoDictionary[@"PARSE_CLIENT_KEY"]];
     
+    [PFFacebookUtils initializeFacebook];
     /*self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
