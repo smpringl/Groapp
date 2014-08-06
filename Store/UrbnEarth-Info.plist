@@ -43,6 +43,8 @@
 	<string>${PARSE_CLIENT_KEY}</string>
 	<key>STRIPE_PUBLISHABLE_KEY</key>
 	<string>${STRIPE_PUBLISHABLE_KEY}</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
