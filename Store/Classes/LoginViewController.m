@@ -8,13 +8,14 @@
 
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+#import "EmailSignupViewController.h"
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
-@synthesize logo, shellView, facebookLog, backgroundview, opblack, contentHolder, lorr, emailHolder, passwordHolder, loginBtn;
+@synthesize logo, shellView, facebookLog, backgroundview, opblack, contentHolder, lorr, emailHolder, passwordHolder, loginBtn, twitterLog, signupEmailBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +30,6 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [PFFacebookUtils initializeFacebook];
     
 	// Do any additional setup after loading the view, typically from a nib.
     if ([PFUser currentUser] && // Check if a user is cached
@@ -39,6 +39,7 @@
         [self.navigationController pushViewController:
          [HomeViewController alloc] animated:NO];
     }
+    
     
     /*shellView = [[UIView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height-300)/2, self.view.frame.size.width, 300)];
      [self.view addSubview:shellView];
@@ -129,6 +130,38 @@
     facebookLog.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     [contentHolder addSubview:facebookLog];
     
+    twitterLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 200, 250, 50)];
+    [twitterLog setTitle:@"Log in with Twitter" forState:UIControlStateNormal];
+    [twitterLog addTarget:self action:@selector(twitterLoginTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [twitterLog.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    twitterLog.layer.cornerRadius = 8.0f;
+    [twitterLog setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [twitterLog setBackgroundColor:[UIColor colorWithRed:29.0f/255.0f
+                                                    green:202.0f/255.0f
+                                                     blue:255.0f/255.0f
+                                                    alpha:1.0f]];
+    [twitterLog setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
+    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
+    twitterLog.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+    twitterLog.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    [contentHolder addSubview:twitterLog];
+    
+    signupEmailBtn = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 260, 250, 50)];
+    [signupEmailBtn setTitle:@"Log in with email" forState:UIControlStateNormal];
+    [signupEmailBtn addTarget:self action:@selector(suEmailTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [signupEmailBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    signupEmailBtn.layer.cornerRadius = 8.0f;
+    [signupEmailBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [signupEmailBtn setBackgroundColor:[UIColor colorWithRed:29.0f/255.0f
+                                                   green:202.0f/255.0f
+                                                    blue:255.0f/255.0f
+                                                   alpha:1.0f]];
+    [signupEmailBtn setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
+    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
+    signupEmailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+    signupEmailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    [contentHolder addSubview:signupEmailBtn];
+    
 }
 - (void)loginButtonTouchHandler:(id)sender {
     // The permissions requested from the user
@@ -154,6 +187,28 @@
              [HomeViewController alloc] animated:NO];
         }
     }];
+}
+
+- (void)twitterLoginTouchHandler:(id)sender {
+    [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Twitter login.");
+            return;
+        } else if (user.isNew) {
+            NSLog(@"User signed up and logged in with Twitter!");
+        } else {
+            NSLog(@"User logged in with Twitter!");
+        }    
+    }];
+}
+
+- (void)suEmailTouchHandler:(id)sender {
+    //[self.navigationController pushViewController:
+     //[EmailSignupViewController alloc] animated:NO];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    EmailSignupViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"emailsignup"];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {

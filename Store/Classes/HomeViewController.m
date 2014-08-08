@@ -37,10 +37,10 @@ BOOL settingsShowing = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
     // Create request for user's Facebook data
-    FBRequest *request = [FBRequest requestForMe];
+    FBRequest *facebookrequest = [FBRequest requestForMe];
     
     // Send request to Facebook
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+    [facebookrequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         if (!error) {
             // result is a dictionary with the user's Facebook data
             NSDictionary *userData = (NSDictionary *)result;
@@ -71,6 +71,58 @@ BOOL settingsShowing = NO;
             
         }
     }];
+    
+    /*[PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
+        
+            
+            // TODO find a way to fetch details with Twitter..
+            
+            NSString * requestString = [NSString stringWithFormat:@"https://api.twitter.com/1.1/users/show.json?screen_name=%@", user.username];
+            
+            
+            NSURL *verify = [NSURL URLWithString:requestString];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:verify];
+            [[PFTwitterUtils twitter] signRequest:request];
+            NSURLResponse *response = nil;
+            NSData *data = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&response
+                                                             error:&error];
+            
+            
+            if ( error == nil){
+                NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+                NSLog(@"%@",result);
+                
+                [user setObject:[result objectForKey:@"profile_image_url_https"]
+                         forKey:@"picture"];
+                // does this thign help?
+                [user setUsername:[result objectForKey:@"screen_name"]];
+                
+                NSString * names = [result objectForKey:@"name"];
+                NSMutableArray * array = [NSMutableArray arrayWithArray:[names componentsSeparatedByString:@" "]];
+                if ( array.count > 1){
+                    [user setObject:[array lastObject]
+                             forKey:@"last_name"];
+                    
+                    [array removeLastObject];
+                    [user setObject:[array componentsJoinedByString:@" " ]
+                             forKey:@"first_name"];
+                }
+                
+                [user saveInBackground];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:notificationUserDidLogin
+                                                                object:nil];
+            
+            return;
+        
+        
+        
+        
+    }];*/
+    
+    
     
     bgPic = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     bgPic.image = [UIImage imageNamed:@"bg.jpg"];

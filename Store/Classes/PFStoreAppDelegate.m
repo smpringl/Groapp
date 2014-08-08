@@ -16,6 +16,9 @@
     [Parse setApplicationId:infoDictionary[@"PARSE_APPLICATION_ID"] clientKey:infoDictionary[@"PARSE_CLIENT_KEY"]];
     
     [PFFacebookUtils initializeFacebook];
+    
+    [PFTwitterUtils initializeWithConsumerKey:@"nqEqsgEgci4CGaRTaCuFUK1a7"
+                               consumerSecret:@"yHSqZ6DyX4bgXsWNCLHLtxwFbk9YvOvlSvV8haK4l0hj0ODgj9"];
     /*self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

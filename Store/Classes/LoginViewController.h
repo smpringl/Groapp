@@ -20,5 +20,7 @@
 @property (nonatomic, retain) UIView *emailHolder;
 @property (nonatomic, retain) UIView *passwordHolder;
 @property (nonatomic, retain) IBOutlet UIButton *loginBtn;
+@property (strong, nonatomic) IBOutlet UIButton *twitterLog;
+@property (strong, nonatomic) IBOutlet UIButton *signupEmailBtn;
 
 @end

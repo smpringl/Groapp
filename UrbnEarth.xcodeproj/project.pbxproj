@@ -78,6 +78,7 @@
 		602E61DA199200920078145E /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 602E61D5199200920078145E /* bg.jpg */; };
 		603FD7B71991AEB600EC6F40 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603FD7B61991AEB600EC6F40 /* FacebookSDK.framework */; };
 		603FD7B91991AFD400EC6F40 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603FD7B81991AFD400EC6F40 /* Parse.framework */; };
+		60A54E0919948EBB00BA8846 /* EmailSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */; };
 		D969D68B16E171BE00135DC1 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D969D65816E171BE00135DC1 /* Arrow.png */; };
 		D969D68C16E171BE00135DC1 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D969D65916E171BE00135DC1 /* Arrow@2x.png */; };
 		D969D68D16E171BE00135DC1 /* ButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = D969D65A16E171BE00135DC1 /* ButtonBack.png */; };
@@ -229,6 +230,8 @@
 		602E61D5199200920078145E /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		603FD7B61991AEB600EC6F40 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		603FD7B81991AFD400EC6F40 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		60A54E0719948EBB00BA8846 /* EmailSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSignupViewController.h; sourceTree = "<group>"; };
+		60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSignupViewController.m; sourceTree = "<group>"; };
 		D969D65816E171BE00135DC1 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
 		D969D65916E171BE00135DC1 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow@2x.png"; sourceTree = "<group>"; };
 		D969D65A16E171BE00135DC1 /* ButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonBack.png; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 				602E61C81991F3950078145E /* LoginViewController.m */,
 				602E61CA1991F4070078145E /* HomeViewController.h */,
 				602E61CB1991F4070078145E /* HomeViewController.m */,
+				60A54E0719948EBB00BA8846 /* EmailSignupViewController.h */,
+				60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */,
 			);
 			name = Classes;
 			path = Store/Classes;
@@ -727,6 +732,7 @@
 				49524DDB16E0097A000E08B7 /* PKUSAddressZip.m in Sources */,
 				49524DDC16E0097A000E08B7 /* PKView.m in Sources */,
 				49524DEF16E0097A000E08B7 /* STPCard.m in Sources */,
+				60A54E0919948EBB00BA8846 /* EmailSignupViewController.m in Sources */,
 				49524DF016E0097A000E08B7 /* STPToken.m in Sources */,
 				49524DF116E0097A000E08B7 /* Stripe.m in Sources */,
 				49524DF216E0097A000E08B7 /* StripeError.m in Sources */,
