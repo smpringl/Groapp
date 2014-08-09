@@ -15,7 +15,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize logo, shellView, facebookLog, backgroundview, opblack, contentHolder, lorr, emailHolder, passwordHolder, loginBtn, twitterLog, signupEmailBtn;
+@synthesize logo, shellView, facebookLog, backgroundview, opblack, contentHolder, lorr, emailHolder, passwordHolder, loginBtn, twitterLog, signupEmailBtn, ueUserFirstName, ueUserLastName, ueUserFBID, ueUserEmail;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -110,7 +110,7 @@
 }
 - (void)loginButtonTouchHandler:(id)sender {
     // The permissions requested from the user
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location", @"email"];
     
     // Login PFUser using Facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
@@ -124,8 +124,9 @@
             }
         } else if (user.isNew) {
             NSLog(@"User with facebook signed up and logged in!");
-            [self.navigationController pushViewController:
-             [HomeViewController alloc] animated:NO];
+            /*[self.navigationController pushViewController:
+             [HomeViewController alloc] animated:NO];*/
+            [self writeFacebookData];
             
         } else {
             NSLog(@"User with facebook logged in!");
@@ -133,6 +134,55 @@
              [HomeViewController alloc] animated:NO];
         }
     }];
+}
+
+-(void)writeFacebookData {
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+    indicator.center = self.view.center;
+    [self.view addSubview:indicator];
+    [indicator bringSubviewToFront:self.view];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
+    
+    [indicator startAnimating];
+    
+    [FBRequestConnection
+     startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+         if (!error) {
+             NSLog(@"startedfbdrop");
+             NSString *usrfbid = [result objectForKey:@"id"];
+             ueUserFBID = usrfbid;
+             NSString *usremail = [result objectForKey:@"email"];
+             ueUserEmail = usremail;
+             NSString *firstname = [result objectForKey:@"first_name"];
+             ueUserFirstName = firstname;
+             NSString *lastname = [result objectForKey:@"last_name"];
+             ueUserLastName = lastname;
+             NSLog(ueUserLastName);
+             
+             [indicator stopAnimating];
+             //[[PFUser currentUser] saveInBackground];
+             [self storeUserData];
+         }
+     }];
+}
+
+- (void)storeUserData {
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        // do stuff with the user
+        NSLog(@"madeithere");
+        currentUser[@"fbid"] = ueUserFBID;
+        currentUser[@"email"] = ueUserEmail;
+        currentUser[@"firstname"] = ueUserFirstName;
+        currentUser[@"lastname"] = ueUserLastName;
+        [[PFUser currentUser] saveInBackground];
+        
+        [self.navigationController pushViewController:
+         [HomeViewController alloc] animated:NO];
+    } else {
+        // show the signup or login screen
+    }
 }
 
 - (void)twitterLoginTouchHandler:(id)sender {

@@ -68,7 +68,7 @@ BOOL settingsShowing = NO;
             // ...
             nameLabel.text = name;
             locLabel.text = location;
-            [self storeFacebookData];
+           // [self storeFacebookData];
         }
     }];
     
@@ -232,15 +232,14 @@ BOOL settingsShowing = NO;
     
 }
 
-- (void)storeFacebookData {
+/*- (void)storeFacebookData {
     [FBRequestConnection
      startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
          if (!error) {
              NSLog(@"startedfbdrop");
-             NSString *name = [result objectForKey:@"name"];
+             NSString *name = [result objectForKey:@"first_name"];
              usaname = name;
              NSLog(usaname);
-             //[[PFUser currentUser] saveInBackground];
              [self storeUserData];
          }
      }];
@@ -250,15 +249,14 @@ BOOL settingsShowing = NO;
 - (void)storeUserData {
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        // do stuff with the user
-        //user[@"ZipCode"] = zcode;
+        
         NSLog(@"madeithere");
         currentUser[@"firstname"] = usaname;
         [[PFUser currentUser] saveInBackground];
     } else {
-        // show the signup or login screen
+        
     }
-}
+}*/
 
 // Called every time a chunk of the data is received
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {

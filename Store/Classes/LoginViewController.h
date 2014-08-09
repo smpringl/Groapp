@@ -23,6 +23,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *twitterLog;
 @property (strong, nonatomic) IBOutlet UIButton *signupEmailBtn;
 
-@property (nonatomic, retain) NSString *FBUserName;
+@property (nonatomic, retain) NSString *ueUserFBID;
+@property (nonatomic, retain) NSString *ueUserEmail;
+@property (nonatomic, retain) NSString *ueUserFirstName;
+@property (nonatomic, retain) NSString *ueUserLastName;
+
 
 @end
