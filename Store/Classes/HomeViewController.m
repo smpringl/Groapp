@@ -14,7 +14,7 @@
 
 @implementation HomeViewController
 
-@synthesize nameLabel, userPic, bgPic, settingsView, changeBackground, logoutBtn, todoContainer, myTask, todoTop, todoBottom, caseView, locLabel;
+@synthesize nameLabel, userPic, bgPic, settingsView, changeBackground, logoutBtn, todoContainer, myTask, todoTop, todoBottom, caseView, locLabel, usaname;
 
 BOOL settingsShowing = NO;
 
@@ -68,9 +68,11 @@ BOOL settingsShowing = NO;
             // ...
             nameLabel.text = name;
             locLabel.text = location;
-            
+            [self storeFacebookData];
         }
     }];
+    
+    
     
     /*[PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
         
@@ -230,6 +232,34 @@ BOOL settingsShowing = NO;
     
 }
 
+- (void)storeFacebookData {
+    [FBRequestConnection
+     startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+         if (!error) {
+             NSLog(@"startedfbdrop");
+             NSString *name = [result objectForKey:@"name"];
+             usaname = name;
+             NSLog(usaname);
+             //[[PFUser currentUser] saveInBackground];
+             [self storeUserData];
+         }
+     }];
+    
+}
+
+- (void)storeUserData {
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        // do stuff with the user
+        //user[@"ZipCode"] = zcode;
+        NSLog(@"madeithere");
+        currentUser[@"firstname"] = usaname;
+        [[PFUser currentUser] saveInBackground];
+    } else {
+        // show the signup or login screen
+    }
+}
+
 // Called every time a chunk of the data is received
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_imageData appendData:data]; // Build the image
@@ -316,6 +346,8 @@ BOOL settingsShowing = NO;
     // Return to login page
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     //UIGraphicsBeginImageContext(newSize);

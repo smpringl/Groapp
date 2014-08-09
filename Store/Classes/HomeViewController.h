@@ -24,6 +24,6 @@
 @property (strong, nonatomic) IBOutlet UIView *todoTop;
 @property (strong, nonatomic) IBOutlet UIView *todoBottom;
 @property (strong, nonatomic) IBOutlet UITextField *myTask;
-
+@property (strong, nonatomic) NSString *usaname;
 
 @end

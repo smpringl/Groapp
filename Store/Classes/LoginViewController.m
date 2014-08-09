@@ -41,27 +41,6 @@
     }
     
     
-    /*shellView = [[UIView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height-300)/2, self.view.frame.size.width, 300)];
-     [self.view addSubview:shellView];
-     
-     UILabel *welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, shellView.frame.size.width, 20)];
-     welcomeLabel.textColor = [UIColor blackColor];
-     welcomeLabel.textAlignment = NSTextAlignmentCenter;
-     [welcomeLabel setFont:[UIFont systemFontOfSize:20]];
-     welcomeLabel.text = [NSString stringWithFormat:@"Welcome to:"];
-     [shellView addSubview:welcomeLabel];
-     
-     logo = [[UIImageView alloc] initWithFrame:CGRectMake((shellView.frame.size.width-260)/2, 100, 260, 62)];
-     logo.image = [UIImage imageNamed:@"OnTask.png"];
-     [shellView addSubview:logo];
-     
-     UILabel *logOrSign = [[UILabel alloc] initWithFrame:CGRectMake(0, shellView.frame.size.height-80, shellView.frame.size.width, 15)];
-     logOrSign.textColor = [UIColor blackColor];
-     logOrSign.textAlignment = NSTextAlignmentCenter;
-     [logOrSign setFont:[UIFont systemFontOfSize:12]];
-     logOrSign.text = [NSString stringWithFormat:@"Log in or sign up to get started"];
-     [shellView addSubview:logOrSign];*/
-    
     backgroundview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     backgroundview.image = [UIImage imageNamed:(@"login2.png")];
     backgroundview.contentMode = UIViewContentModeScaleAspectFill;
@@ -79,40 +58,6 @@
     logo.image = [UIImage imageNamed:(@"UrbnEarth-Hi-Res-Logo.png")];
     logo.contentMode = UIViewContentModeScaleAspectFill;
     [contentHolder addSubview:logo];
-    
-    /*lorr = [[UILabel alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 100, 250, 40)];
-     [lorr setFont:[UIFont boldSystemFontOfSize:14]];
-     [lorr setTextColor:[UIColor whiteColor]];
-     [lorr setText:@"Login or Register"];
-     [contentHolder addSubview:lorr];
-     
-     emailHolder = [[UIView alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 140, 250, 40)];
-     emailHolder.layer.borderColor = [UIColor whiteColor].CGColor;
-     emailHolder.layer.borderWidth = 1.0f;
-     emailHolder.layer.cornerRadius = 5.0f;
-     [contentHolder addSubview:emailHolder];
-     
-     passwordHolder = [[UIView alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 200, 250, 40)];
-     passwordHolder.layer.borderColor = [UIColor whiteColor].CGColor;
-     passwordHolder.layer.borderWidth = 1.0f;
-     passwordHolder.layer.cornerRadius = 5.0f;
-     [contentHolder addSubview:passwordHolder];
-     
-     loginBtn = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 260, 250, 50)];
-     [loginBtn addTarget:self action:@selector(saveTap:) forControlEvents:UIControlEventTouchUpInside];
-     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-     loginBtn.backgroundColor = [UIColor colorWithRed:80.0f/255.0f
-     green:164.0f/255.0f
-     blue:254.0f/255.0f
-     alpha:1.0f];
-     [loginBtn setTitle:@"Login" forState:UIControlStateNormal];
-     [loginBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-     //addBtn.layer.cornerRadius = 5.0f;
-     loginBtn.clipsToBounds = YES;
-     //loginBtn.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
-     //loginBtn.layer.borderWidth = 1.0f;
-     loginBtn.layer.cornerRadius = 5.0f;
-     [contentHolder addSubview:loginBtn];*/
     
     facebookLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 140, 250, 50)];
     [facebookLog setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
@@ -181,6 +126,7 @@
             NSLog(@"User with facebook signed up and logged in!");
             [self.navigationController pushViewController:
              [HomeViewController alloc] animated:NO];
+            
         } else {
             NSLog(@"User with facebook logged in!");
             [self.navigationController pushViewController:
@@ -198,7 +144,7 @@
             NSLog(@"User signed up and logged in with Twitter!");
         } else {
             NSLog(@"User logged in with Twitter!");
-        }    
+        }
     }];
 }
 
@@ -210,6 +156,7 @@
     EmailSignupViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"emailsignup"];
     [self.navigationController pushViewController:viewController animated:YES];
 }
+
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
     //UIGraphicsBeginImageContext(newSize);
