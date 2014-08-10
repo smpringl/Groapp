@@ -204,7 +204,17 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     EmailSignupViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"emailsignup"];
-    [self.navigationController pushViewController:viewController animated:YES];
+    //[self.navigationController pushViewController:viewController animated:YES];
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromBottom;
+    [self.view.window.layer addAnimation:transition forKey:kCATransition];
+    [self presentViewController:viewController animated:NO completion:nil];
+    
+    //viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //[self presentViewController:viewController animated:YES completion:nil];
 }
 
 
