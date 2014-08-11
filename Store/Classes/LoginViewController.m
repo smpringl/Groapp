@@ -107,6 +107,23 @@
     signupEmailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     [contentHolder addSubview:signupEmailBtn];
     
+    /*sign up with email button*/
+    UIButton *BackBtn = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-250)/2, self.view.frame.size.height-60, 250, 50)];
+    [BackBtn setTitle:@"Back" forState:UIControlStateNormal];
+    [BackBtn addTarget:self action:@selector(BackTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [BackBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    BackBtn.layer.cornerRadius = 8.0f;
+    [BackBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [BackBtn setBackgroundColor:[UIColor colorWithRed:29.0f/255.0f
+                                                green:202.0f/255.0f
+                                                 blue:255.0f/255.0f
+                                                alpha:1.0f]];
+    //[signupEmailBtn setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
+    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
+    //signupEmailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
+    //signupEmailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    [self.view addSubview:BackBtn];
+    
 }
 - (void)loginButtonTouchHandler:(id)sender {
     // The permissions requested from the user
@@ -215,6 +232,18 @@
     
     //viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     //[self presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)BackTouchHandler:(id)sender {
+    //[self.navigationController popViewControllerAnimated:YES];
+    
+    /*dismiss view controller back to landing view*/
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromBottom;
+    [self.view.window.layer addAnimation:transition forKey:kCATransition];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 
