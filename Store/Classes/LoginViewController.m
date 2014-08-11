@@ -42,22 +42,37 @@
     
     
     backgroundview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    backgroundview.image = [UIImage imageNamed:(@"login2.png")];
+    backgroundview.image = [UIImage imageNamed:(@"Login_Screen_bg.png")];
     backgroundview.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:backgroundview];
     
     opblack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, backgroundview.frame.size.width, backgroundview.frame.size.height)];
     opblack.backgroundColor = [UIColor blackColor];
-    opblack.alpha = 0.45;
+    opblack.alpha = 0.05;
     [backgroundview addSubview:opblack];
     
     contentHolder = [[UIView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height-310)/2, self.view.frame.size.width, 310)];
-    [self.view addSubview:contentHolder];
+     [self.view addSubview:contentHolder];
     
-    logo = [[UIImageView alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-300)/2, 0, 300, 82)];
-    logo.image = [UIImage imageNamed:(@"UrbnEarth-Hi-Res-Logo.png")];
+    logo = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-175)/2, 30, 175, 106)];
+    logo.image = [UIImage imageNamed:(@"UrbnEarth_Login_Screen_Logo_NoWords.png")];
     logo.contentMode = UIViewContentModeScaleAspectFill;
-    [contentHolder addSubview:logo];
+    [self.view addSubview:logo];
+    
+    UILabel *pageMessage = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width-300)/2, 136, 300, 25)];
+    pageMessage.text = @"GOOD THINGS ARE GROWING";
+    /*fromLabel.font = customFont;
+     fromLabel.numberOfLines = 1;
+     fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines; // or UIBaselineAdjustmentAlignCenters, or UIBaselineAdjustmentNone
+     fromLabel.adjustsFontSizeToFitWidth = YES;
+     fromLabel.adjustsLetterSpacingToFitWidth = YES;
+     fromLabel.minimumScaleFactor = 10.0f/12.0f;
+     fromLabel.clipsToBounds = YES;
+     fromLabel.backgroundColor = [UIColor clearColor];*/
+    pageMessage.textColor = [UIColor whiteColor];
+    pageMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
+    pageMessage.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:pageMessage];
     
     facebookLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 140, 250, 50)];
     [facebookLog setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
@@ -91,7 +106,7 @@
     twitterLog.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     [contentHolder addSubview:twitterLog];
     
-    signupEmailBtn = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 260, 250, 50)];
+    /*signupEmailBtn = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 260, 250, 50)];
     [signupEmailBtn setTitle:@"Log in with email" forState:UIControlStateNormal];
     [signupEmailBtn addTarget:self action:@selector(suEmailTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [signupEmailBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
@@ -105,7 +120,7 @@
     //CGFloat spacing = 5; // the amount of spacing to appear between image and title
     signupEmailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
     signupEmailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
-    [contentHolder addSubview:signupEmailBtn];
+    [contentHolder addSubview:signupEmailBtn];*/
     
     /*sign up with email button*/
     UIButton *BackBtn = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-250)/2, self.view.frame.size.height-60, 250, 50)];
