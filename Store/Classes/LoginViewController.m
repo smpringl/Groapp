@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    //[self.navigationController setNavigationBarHidden:YES animated:NO];
     
 	// Do any additional setup after loading the view, typically from a nib.
     if ([PFUser currentUser] && // Check if a user is cached
@@ -51,93 +51,92 @@
     opblack.alpha = 0.05;
     [backgroundview addSubview:opblack];
     
-    contentHolder = [[UIView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height-310)/2, self.view.frame.size.width, 310)];
+    UIView *translucentheader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
+    translucentheader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]];
+    [self.view addSubview:translucentheader];
+    
+    /*back to landing view*/
+    UIButton *BackBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 80, 40)];
+    [BackBtn setTitle:@"Back" forState:UIControlStateNormal];
+    [BackBtn addTarget:self action:@selector(BackTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [BackBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18.0]];
+    [BackBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [BackBtn setBackgroundColor:[UIColor clearColor]];
+    [BackBtn setImage:[self imageWithImage:[UIImage imageNamed:@"backarrow.png"] scaledToSize:CGSizeMake(13,21)] forState:UIControlStateNormal];
+    CGFloat spacing = 5; // the amount of spacing to appear between image and title
+    BackBtn.imageEdgeInsets = UIEdgeInsetsMake(1, 0, 0, spacing);
+    BackBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    [translucentheader addSubview:BackBtn];
+    
+    UILabel *headerlabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, 20, 200, 40)];
+    headerlabel.text = @"LOG IN";
+    headerlabel.textColor = [UIColor blackColor];
+    headerlabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
+    headerlabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:headerlabel];
+    
+    
+    contentHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 310)];
      [self.view addSubview:contentHolder];
     
-    logo = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-175)/2, 30, 175, 106)];
-    logo.image = [UIImage imageNamed:(@"UrbnEarth_Login_Screen_Logo_NoWords.png")];
-    logo.contentMode = UIViewContentModeScaleAspectFill;
-    [self.view addSubview:logo];
     
-    UILabel *pageMessage = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width-300)/2, 136, 300, 25)];
-    pageMessage.text = @"GOOD THINGS ARE GROWING";
-    /*fromLabel.font = customFont;
-     fromLabel.numberOfLines = 1;
-     fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines; // or UIBaselineAdjustmentAlignCenters, or UIBaselineAdjustmentNone
-     fromLabel.adjustsFontSizeToFitWidth = YES;
-     fromLabel.adjustsLetterSpacingToFitWidth = YES;
-     fromLabel.minimumScaleFactor = 10.0f/12.0f;
-     fromLabel.clipsToBounds = YES;
-     fromLabel.backgroundColor = [UIColor clearColor];*/
-    pageMessage.textColor = [UIColor whiteColor];
-    pageMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
-    pageMessage.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:pageMessage];
-    
-    facebookLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 140, 250, 50)];
-    [facebookLog setTitle:@"Log in with Facebook" forState:UIControlStateNormal];
+    facebookLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 0, 250, 45)];
+    [facebookLog setTitle:@"LOG IN WITH FACEBOOK" forState:UIControlStateNormal];
     [facebookLog addTarget:self action:@selector(loginButtonTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [facebookLog.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    facebookLog.layer.cornerRadius = 8.0f;
+    [facebookLog.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0]];
+    //facebookLog.layer.cornerRadius = 8.0f;
     [facebookLog setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [facebookLog setBackgroundColor:[UIColor colorWithRed:41.0f/255.0f
-                                                    green:128.0f/255.0f
-                                                     blue:185.0f/255.0f
+    [facebookLog setBackgroundColor:[UIColor colorWithRed:35.0f/255.0f
+                                                    green:62.0f/255.0f
+                                                     blue:113.0f/255.0f
                                                     alpha:1.0f]];
-    [facebookLog setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
-    CGFloat spacing = 5; // the amount of spacing to appear between image and title
+    [facebookLog setImage:[self imageWithImage:[UIImage imageNamed:@"Facebook-Icon.png"] scaledToSize:CGSizeMake(30,30)] forState:UIControlStateNormal];
+    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
     facebookLog.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
     facebookLog.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     [contentHolder addSubview:facebookLog];
     
-    twitterLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 200, 250, 50)];
-    [twitterLog setTitle:@"Log in with Twitter" forState:UIControlStateNormal];
+    UIView *facebookBorder = [[UIView alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 45, 250, 3)];
+    facebookBorder.backgroundColor = [UIColor colorWithRed:22.0f/255.0f
+                                                     green:40.0f/255.0f
+                                                      blue:73.0f/255.0f
+                                                     alpha:1.0f];
+    [contentHolder addSubview:facebookBorder];
+    
+    twitterLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 55, 250, 45)];
+    [twitterLog setTitle:@"LOG IN WITH TWITTER" forState:UIControlStateNormal];
     [twitterLog addTarget:self action:@selector(twitterLoginTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [twitterLog.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    twitterLog.layer.cornerRadius = 8.0f;
+    [twitterLog.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0]];
     [twitterLog setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [twitterLog setBackgroundColor:[UIColor colorWithRed:29.0f/255.0f
-                                                    green:202.0f/255.0f
+    [twitterLog setBackgroundColor:[UIColor colorWithRed:51.0f/255.0f
+                                                    green:204.0f/255.0f
                                                      blue:255.0f/255.0f
                                                     alpha:1.0f]];
-    [twitterLog setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
+    [twitterLog setImage:[self imageWithImage:[UIImage imageNamed:@"Twitter-Icon.png"] scaledToSize:CGSizeMake(30,30)] forState:UIControlStateNormal];
     //CGFloat spacing = 5; // the amount of spacing to appear between image and title
-    twitterLog.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
-    twitterLog.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
+    twitterLog.imageEdgeInsets = UIEdgeInsetsMake(0, -22, 0, 0);
+    twitterLog.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     [contentHolder addSubview:twitterLog];
     
-    /*signupEmailBtn = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 260, 250, 50)];
-    [signupEmailBtn setTitle:@"Log in with email" forState:UIControlStateNormal];
-    [signupEmailBtn addTarget:self action:@selector(suEmailTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [signupEmailBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    signupEmailBtn.layer.cornerRadius = 8.0f;
-    [signupEmailBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [signupEmailBtn setBackgroundColor:[UIColor colorWithRed:29.0f/255.0f
-                                                   green:202.0f/255.0f
-                                                    blue:255.0f/255.0f
-                                                   alpha:1.0f]];
-    [signupEmailBtn setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
-    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
-    signupEmailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
-    signupEmailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
-    [contentHolder addSubview:signupEmailBtn];*/
+    UIView *twitterBorder = [[UIView alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 100, 250, 3)];
+    twitterBorder.backgroundColor = [UIColor colorWithRed:38.0f/255.0f
+                                                     green:139.0f/255.0f
+                                                      blue:173.0f/255.0f
+                                                     alpha:1.0f];
+    [contentHolder addSubview:twitterBorder];
     
-    /*sign up with email button*/
-    UIButton *BackBtn = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-250)/2, self.view.frame.size.height-60, 250, 50)];
-    [BackBtn setTitle:@"Back" forState:UIControlStateNormal];
-    [BackBtn addTarget:self action:@selector(BackTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [BackBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
-    BackBtn.layer.cornerRadius = 8.0f;
-    [BackBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [BackBtn setBackgroundColor:[UIColor colorWithRed:29.0f/255.0f
-                                                green:202.0f/255.0f
-                                                 blue:255.0f/255.0f
-                                                alpha:1.0f]];
-    //[signupEmailBtn setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
-    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
-    //signupEmailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
-    //signupEmailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
-    [self.view addSubview:BackBtn];
+    UIView *whitediv = [[UIView alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-235)/2, 113, 235, 2)];
+    whitediv.backgroundColor = [UIColor whiteColor];
+    whitediv.alpha = 0.8f;
+    [contentHolder addSubview:whitediv];
+    
+    UILabel *logmessage = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width-280)/2, 120, 280, 40)];
+    logmessage.text = @"Login with your UrbnEarth account credentials, by doing so you agree to the Terms & Conditions and Privacy Policy.";
+    logmessage.numberOfLines = 2;
+    logmessage.textColor = [UIColor whiteColor];
+    logmessage.font = [UIFont fontWithName:@"Avenir-Black" size:10.0];
+    logmessage.textAlignment = NSTextAlignmentCenter;
+    [contentHolder addSubview:logmessage];
     
 }
 - (void)loginButtonTouchHandler:(id)sender {

@@ -99,6 +99,10 @@
 		603FD7B91991AFD400EC6F40 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603FD7B81991AFD400EC6F40 /* Parse.framework */; };
 		605452741998274900FAE3AA /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605452731998274900FAE3AA /* LandingViewController.m */; };
 		60A54E0919948EBB00BA8846 /* EmailSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */; };
+		60DECC8D1999C98A00454E2A /* Twitter-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DECC8C1999C98A00454E2A /* Twitter-Icon.png */; };
+		60DECC8F1999C99400454E2A /* Facebook-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DECC8E1999C99400454E2A /* Facebook-Icon.png */; };
+		60DECC911999CEF900454E2A /* transwhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DECC901999CEF900454E2A /* transwhite.png */; };
+		60DECC931999D77F00454E2A /* backarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DECC921999D77F00454E2A /* backarrow.png */; };
 		D969D68B16E171BE00135DC1 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D969D65816E171BE00135DC1 /* Arrow.png */; };
 		D969D68C16E171BE00135DC1 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D969D65916E171BE00135DC1 /* Arrow@2x.png */; };
 		D969D68D16E171BE00135DC1 /* ButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = D969D65A16E171BE00135DC1 /* ButtonBack.png */; };
@@ -273,6 +277,10 @@
 		605452731998274900FAE3AA /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
 		60A54E0719948EBB00BA8846 /* EmailSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSignupViewController.h; sourceTree = "<group>"; };
 		60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSignupViewController.m; sourceTree = "<group>"; };
+		60DECC8C1999C98A00454E2A /* Twitter-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twitter-Icon.png"; sourceTree = "<group>"; };
+		60DECC8E1999C99400454E2A /* Facebook-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Facebook-Icon.png"; sourceTree = "<group>"; };
+		60DECC901999CEF900454E2A /* transwhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transwhite.png; sourceTree = "<group>"; };
+		60DECC921999D77F00454E2A /* backarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backarrow.png; sourceTree = "<group>"; };
 		D969D65816E171BE00135DC1 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
 		D969D65916E171BE00135DC1 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow@2x.png"; sourceTree = "<group>"; };
 		D969D65A16E171BE00135DC1 /* ButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonBack.png; sourceTree = "<group>"; };
@@ -557,6 +565,10 @@
 		4999CBEA16DD599900C6C8FC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				60DECC921999D77F00454E2A /* backarrow.png */,
+				60DECC901999CEF900454E2A /* transwhite.png */,
+				60DECC8E1999C99400454E2A /* Facebook-Icon.png */,
+				60DECC8C1999C98A00454E2A /* Twitter-Icon.png */,
 				6028A3581998AE20001A42A1 /* UrbnEarth_Login_Screen_Logo_NoWords.png */,
 				6028A3561998A208001A42A1 /* UrbnEarth_Login_Screen_Logo.png */,
 				6028A3541998A1F4001A42A1 /* Login_Screen_bg.png */,
@@ -707,6 +719,7 @@
 				49524DDE16E0097A000E08B7 /* amex@2x.png in Resources */,
 				601AF1AA19961D3900764B74 /* AppIcon76x76.png in Resources */,
 				49524DDF16E0097A000E08B7 /* cvc-amex.png in Resources */,
+				60DECC911999CEF900454E2A /* transwhite.png in Resources */,
 				49524DE016E0097A000E08B7 /* cvc-amex@2x.png in Resources */,
 				49524DE116E0097A000E08B7 /* cvc.png in Resources */,
 				49524DE216E0097A000E08B7 /* cvc@2x.png in Resources */,
@@ -745,6 +758,7 @@
 				601AF1AC19961D3900764B74 /* iTunesArtwork.png in Resources */,
 				D969D69716E171BE00135DC1 /* ButtonOrderPressed.png in Resources */,
 				D969D69816E171BE00135DC1 /* ButtonOrderPressed@2x.png in Resources */,
+				60DECC8F1999C99400454E2A /* Facebook-Icon.png in Resources */,
 				D969D69916E171BE00135DC1 /* CreditCardBg.png in Resources */,
 				601AF1A119961D3900764B74 /* AppIcon40x40@2x.png in Resources */,
 				D969D69A16E171BE00135DC1 /* CreditCardBg@2x.png in Resources */,
@@ -769,6 +783,7 @@
 				D969D6AA16E171BE00135DC1 /* Icon.png in Resources */,
 				D969D6AB16E171BE00135DC1 /* Icon@2x.png in Resources */,
 				D969D6AC16E171BE00135DC1 /* IconCheckout.png in Resources */,
+				60DECC931999D77F00454E2A /* backarrow.png in Resources */,
 				602E61D0199200250078145E /* UrbnEarth-Hi-Res-Logo.png in Resources */,
 				602E61D9199200920078145E /* 895-user-group@2x.png in Resources */,
 				D969D6AD16E171BE00135DC1 /* IconCheckout@2x.png in Resources */,
@@ -777,6 +792,7 @@
 				601AF1AB19961D3900764B74 /* AppIcon76x76@2x.png in Resources */,
 				D969D6B016E171BE00135DC1 /* iTunesArtwork.png in Resources */,
 				602E61D7199200920078145E /* 485-facebook@2x.png in Resources */,
+				60DECC8D1999C98A00454E2A /* Twitter-Icon.png in Resources */,
 				D969D6B116E171BE00135DC1 /* iTunesArtwork@2x.png in Resources */,
 				6028A3551998A1F4001A42A1 /* Login_Screen_bg.png in Resources */,
 				D969D6B416E171BE00135DC1 /* Powered.png in Resources */,
