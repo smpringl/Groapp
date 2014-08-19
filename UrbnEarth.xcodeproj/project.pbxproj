@@ -85,6 +85,7 @@
 		6028A3551998A1F4001A42A1 /* Login_Screen_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6028A3541998A1F4001A42A1 /* Login_Screen_bg.png */; };
 		6028A3571998A208001A42A1 /* UrbnEarth_Login_Screen_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6028A3561998A208001A42A1 /* UrbnEarth_Login_Screen_Logo.png */; };
 		6028A3591998AE20001A42A1 /* UrbnEarth_Login_Screen_Logo_NoWords.png in Resources */ = {isa = PBXBuildFile; fileRef = 6028A3581998AE20001A42A1 /* UrbnEarth_Login_Screen_Logo_NoWords.png */; };
+		602BEFE019A287F600DB1BB2 /* transblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 602BEFDF19A287F600DB1BB2 /* transblack.png */; };
 		602E61C61991F3720078145E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602E61C51991F3720078145E /* Main.storyboard */; };
 		602E61C91991F3950078145E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 602E61C81991F3950078145E /* LoginViewController.m */; };
 		602E61CC1991F4070078145E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 602E61CB1991F4070078145E /* HomeViewController.m */; };
@@ -98,6 +99,8 @@
 		603FD7B71991AEB600EC6F40 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603FD7B61991AEB600EC6F40 /* FacebookSDK.framework */; };
 		603FD7B91991AFD400EC6F40 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603FD7B81991AFD400EC6F40 /* Parse.framework */; };
 		605452741998274900FAE3AA /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 605452731998274900FAE3AA /* LandingViewController.m */; };
+		606297AA19A3063F00C00B49 /* Ellipse-Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 606297A919A3063F00C00B49 /* Ellipse-Green.png */; };
+		606297AC19A3064800C00B49 /* Ellipse.png in Resources */ = {isa = PBXBuildFile; fileRef = 606297AB19A3064800C00B49 /* Ellipse.png */; };
 		60A54E0919948EBB00BA8846 /* EmailSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */; };
 		60DECC8D1999C98A00454E2A /* Twitter-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DECC8C1999C98A00454E2A /* Twitter-Icon.png */; };
 		60DECC8F1999C99400454E2A /* Facebook-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 60DECC8E1999C99400454E2A /* Facebook-Icon.png */; };
@@ -259,6 +262,7 @@
 		6028A3541998A1F4001A42A1 /* Login_Screen_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Login_Screen_bg.png; sourceTree = "<group>"; };
 		6028A3561998A208001A42A1 /* UrbnEarth_Login_Screen_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UrbnEarth_Login_Screen_Logo.png; sourceTree = "<group>"; };
 		6028A3581998AE20001A42A1 /* UrbnEarth_Login_Screen_Logo_NoWords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UrbnEarth_Login_Screen_Logo_NoWords.png; sourceTree = "<group>"; };
+		602BEFDF19A287F600DB1BB2 /* transblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transblack.png; sourceTree = "<group>"; };
 		602E61C51991F3720078145E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		602E61C71991F3950078145E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		602E61C81991F3950078145E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 		603FD7B81991AFD400EC6F40 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		605452721998274900FAE3AA /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
 		605452731998274900FAE3AA /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
+		606297A919A3063F00C00B49 /* Ellipse-Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ellipse-Green.png"; sourceTree = "<group>"; };
+		606297AB19A3064800C00B49 /* Ellipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ellipse.png; sourceTree = "<group>"; };
 		60A54E0719948EBB00BA8846 /* EmailSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSignupViewController.h; sourceTree = "<group>"; };
 		60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSignupViewController.m; sourceTree = "<group>"; };
 		60DECC8C1999C98A00454E2A /* Twitter-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twitter-Icon.png"; sourceTree = "<group>"; };
@@ -565,6 +571,9 @@
 		4999CBEA16DD599900C6C8FC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				606297AB19A3064800C00B49 /* Ellipse.png */,
+				606297A919A3063F00C00B49 /* Ellipse-Green.png */,
+				602BEFDF19A287F600DB1BB2 /* transblack.png */,
 				60DECC921999D77F00454E2A /* backarrow.png */,
 				60DECC901999CEF900454E2A /* transwhite.png */,
 				60DECC8E1999C99400454E2A /* Facebook-Icon.png */,
@@ -719,6 +728,7 @@
 				49524DDE16E0097A000E08B7 /* amex@2x.png in Resources */,
 				601AF1AA19961D3900764B74 /* AppIcon76x76.png in Resources */,
 				49524DDF16E0097A000E08B7 /* cvc-amex.png in Resources */,
+				602BEFE019A287F600DB1BB2 /* transblack.png in Resources */,
 				60DECC911999CEF900454E2A /* transwhite.png in Resources */,
 				49524DE016E0097A000E08B7 /* cvc-amex@2x.png in Resources */,
 				49524DE116E0097A000E08B7 /* cvc.png in Resources */,
@@ -770,6 +780,7 @@
 				D969D69E16E171BE00135DC1 /* DropdownButton.png in Resources */,
 				D969D69F16E171BE00135DC1 /* DropdownButton@2x.png in Resources */,
 				D969D6A016E171BE00135DC1 /* DropdownButtonPressed.png in Resources */,
+				606297AC19A3064800C00B49 /* Ellipse.png in Resources */,
 				D969D6A116E171BE00135DC1 /* DropdownButtonPressed@2x.png in Resources */,
 				D969D6A416E171BE00135DC1 /* Icon-72.png in Resources */,
 				D969D6A516E171BE00135DC1 /* Icon-72@2x.png in Resources */,
@@ -798,6 +809,7 @@
 				D969D6B416E171BE00135DC1 /* Powered.png in Resources */,
 				D969D6B516E171BE00135DC1 /* Powered@2x.png in Resources */,
 				D969D6B616E171BE00135DC1 /* Product.png in Resources */,
+				606297AA19A3063F00C00B49 /* Ellipse-Green.png in Resources */,
 				D969D6B716E171BE00135DC1 /* Product@2x.png in Resources */,
 				6028A3591998AE20001A42A1 /* UrbnEarth_Login_Screen_Logo_NoWords.png in Resources */,
 				D969D6B816E171BE00135DC1 /* ShippingHeader.png in Resources */,

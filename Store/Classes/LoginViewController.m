@@ -15,7 +15,8 @@
 @end
 
 @implementation LoginViewController
-@synthesize facebookLog, backgroundview, opblack, contentHolder, topHolder, emailHolder, passwordHolder, loginBtn, twitterLog, signupEmailBtn, ueUserFirstName, ueUserLastName, ueUserFBID, ueUserEmail, logUserEmail, logUserPass, regularLog, forgotpassowrd;
+BOOL forgotShowing = NO;
+@synthesize facebookLog, backgroundview, opblack, contentHolder, topHolder, emailHolder, passwordHolder, loginBtn, twitterLog, signupEmailBtn, ueUserFirstName, ueUserLastName, ueUserFBID, ueUserEmail, logUserEmail, logUserPass, regularLog, forgotpassowrd, forgotPassText, backToLogin;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,11 +46,6 @@
     backgroundview.image = [UIImage imageNamed:(@"Login_Screen_bg.png")];
     backgroundview.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:backgroundview];
-    
-    opblack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, backgroundview.frame.size.width, backgroundview.frame.size.height)];
-    opblack.backgroundColor = [UIColor blackColor];
-    opblack.alpha = 0.05;
-    [backgroundview addSubview:opblack];
     
     UIView *translucentheader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     translucentheader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]];
@@ -200,7 +196,7 @@
     
     regularLog = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-250)/2, 290, 250, 45)];
     [regularLog setTitle:@"LOG IN" forState:UIControlStateNormal];
-    [regularLog addTarget:self action:@selector(loginButtonTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [regularLog addTarget:self action:@selector(emailLoginTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [regularLog.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0]];
     //facebookLog.layer.cornerRadius = 8.0f;
     [regularLog setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -219,36 +215,121 @@
     
     forgotpassowrd = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-200)/2, 340, 200, 30)];
     [forgotpassowrd setTitle:@"Forgot passowrd?" forState:UIControlStateNormal];
-    [forgotpassowrd addTarget:self action:@selector(loginButtonTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [forgotpassowrd addTarget:self action:@selector(forgotPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [forgotpassowrd.titleLabel setFont:[UIFont fontWithName:@"Avenir-Black" size:12.0]];
     //facebookLog.layer.cornerRadius = 8.0f;
     [forgotpassowrd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [contentHolder addSubview:forgotpassowrd];
     
+    opblack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    opblack.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transblack.png"]];
+    opblack.alpha = 0;
+    [self.view addSubview:opblack];
+    
+    UIView *forgotBox = [[UIView alloc] initWithFrame:CGRectMake((opblack.frame.size.width-280)/2, 100, 280, 320)];
+    forgotBox.backgroundColor = [UIColor whiteColor];
+    forgotBox.layer.shadowColor = [[UIColor blackColor] CGColor];
+    forgotBox.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    forgotBox.layer.shadowRadius = 5.0f;
+    forgotBox.layer.shadowOpacity = 1.0f;
+    [opblack addSubview:forgotBox];
+    
+    UILabel *passHeader = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, forgotBox.frame.size.width, 50)];
+    passHeader.text = @"Forgot Password?";
+    passHeader.textColor = [UIColor whiteColor];
+    passHeader.backgroundColor = [UIColor blackColor];
+    passHeader.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0];
+    passHeader.textAlignment = NSTextAlignmentCenter;
+    [forgotBox addSubview:passHeader];
+    
+    UILabel *passBody = [[UILabel alloc]initWithFrame:CGRectMake((forgotBox.frame.size.width-220)/2, 60, 220, 60)];
+    passBody.text = @"No worries!\nEnter your email and we'll send you link to reset your password:";
+    passBody.numberOfLines = 3;
+    passBody.textColor = [UIColor blackColor];
+    passBody.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
+    passBody.textAlignment = NSTextAlignmentCenter;
+    [forgotBox addSubview:passBody];
+    
+    UIView *fpholder = [[UIView alloc] initWithFrame:CGRectMake((forgotBox.frame.size.width-220)/2, 140, 220, 50)];
+    fpholder.backgroundColor = [UIColor colorWithRed:230.0f/255.0f
+                                               green:230.0f/255.0f
+                                                blue:230.0f/255.0f
+                                               alpha:1.0f];
+    [forgotBox addSubview:fpholder];
+    
+    forgotPassText = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, 180, 50)];
+    [forgotPassText setBackgroundColor:[UIColor clearColor]];
+    forgotPassText.font = [UIFont systemFontOfSize:15];
+    forgotPassText.placeholder = @"Email";
+    forgotPassText.autocorrectionType = UITextAutocorrectionTypeNo;
+    forgotPassText.keyboardType = UIKeyboardTypeDefault;
+    forgotPassText.returnKeyType = UIReturnKeyDone;
+    forgotPassText.clearButtonMode = UITextFieldViewModeWhileEditing;
+    forgotPassText.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    forgotPassText.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+    forgotPassText.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"Email"
+                                    attributes:@{
+                                                 NSForegroundColorAttributeName: color,
+                                                 NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0]
+                                                 }];
+    [self.forgotPassText setDelegate:self];
+    [forgotPassText addTarget:self
+                       action:@selector(textFieldFinished:)
+             forControlEvents:UIControlEventEditingDidEndOnExit];
+    [fpholder addSubview:forgotPassText];
+    
+    UIButton *submitFP = [[UIButton alloc] initWithFrame:CGRectMake((forgotBox.frame.size.width-220)/2, 210, 220, 50)];
+    [submitFP setTitle:@"RESET PASSWORD" forState:UIControlStateNormal];
+    [submitFP addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [submitFP.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0]];
+    [submitFP setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [submitFP setBackgroundColor:[UIColor colorWithRed:54.0f/255.0f
+                                                 green:54.0f/255.0f
+                                                  blue:54.0f/255.0f
+                                                 alpha:1.0f]];
+    [forgotBox addSubview:submitFP];
+    
+    backToLogin = [[UIButton alloc] initWithFrame:CGRectMake(0, 270, forgotBox.frame.size.width, 40)];
+    [backToLogin setTitle:@"Log in to Sovi" forState:UIControlStateNormal];
+    [backToLogin addTarget:self action:@selector(showLoginTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [backToLogin.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:12.0]];
+    [backToLogin setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [forgotBox addSubview:backToLogin];
+    
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView animateWithDuration:0.2 delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         topHolder.alpha = 0.0f;
-                         contentHolder.frame = CGRectMake(0, -20, self.view.frame.size.width, 310);
-                     }
-                     completion:nil];
-    
+    if (forgotShowing == NO) {
+        [UIView animateWithDuration:0.2 delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             topHolder.alpha = 0.0f;
+                             contentHolder.frame = CGRectMake(0, -100, self.view.frame.size.width, 310);
+                         }
+                         completion:nil];
+    }
+    else {
+        //do nothing
+    }
 }
 
 
 - (IBAction)textFieldFinished:(id)sender
 {
     // [sender resignFirstResponder];
-    [UIView animateWithDuration:0.3 delay:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         topHolder.alpha = 1.0f;
-                         contentHolder.frame = CGRectMake(0, 80, self.view.frame.size.width, 310);
-                     }
-                     completion:nil];
+    if (forgotShowing == NO) {
+        [UIView animateWithDuration:0.3 delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             topHolder.alpha = 1.0f;
+                             contentHolder.frame = CGRectMake(0, 80, self.view.frame.size.width, 310);
+                         }
+                         completion:nil];
+    }
+    else {
+        //do nothing
+    }
     
 }
 
@@ -318,14 +399,16 @@
         NSLog(@"madeithere");
         currentUser[@"fbid"] = ueUserFBID;
         currentUser[@"email"] = ueUserEmail;
+        currentUser[@"username"] = ueUserEmail;
         currentUser[@"firstname"] = ueUserFirstName;
         currentUser[@"lastname"] = ueUserLastName;
         [[PFUser currentUser] saveInBackground];
         
-        [self.navigationController pushViewController:
-         [HomeViewController alloc] animated:NO];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        HomeViewController *homecontroller = [storyboard instantiateViewControllerWithIdentifier:@"homeview"];
+        [self presentViewController:homecontroller animated:YES completion:nil];
     } else {
-        // show the signup or login screen
+        // do nothing
     }
 }
 
@@ -336,34 +419,90 @@
             return;
         } else if (user.isNew) {
             NSLog(@"User signed up and logged in with Twitter!");
+            
+            
         } else {
             NSLog(@"User logged in with Twitter!");
         }
     }];
 }
 
-- (void)suEmailTouchHandler:(id)sender {
-    //[self.navigationController pushViewController:
-     //[EmailSignupViewController alloc] animated:NO];
+- (void)emailLoginTouchHandler:(id)sender {
+    NSLog(@"email login");
+    [PFUser logInWithUsernameInBackground:logUserEmail.text password:logUserPass.text
+                                    block:^(PFUser *user, NSError *error) {
+                                        if (user) {
+                                            // Do stuff after successful login.
+                                            NSLog(@"User Logged In");
+                                            
+                                            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                                            HomeViewController *homecontroller = [storyboard instantiateViewControllerWithIdentifier:@"homeview"];
+                                            [self presentViewController:homecontroller animated:YES completion:nil];
+                                            
+                                            
+                                        } else {
+                                            // The login failed. Check error to see why.
+                                            UIAlertView *loginFailAlert = [[UIAlertView alloc] initWithTitle: @"Please try again"
+                                                                                                     message:@"The email or password you entered is incorrect"
+                                                                                                    delegate:self
+                                                                                           cancelButtonTitle:@"Ok"
+                                                                                           otherButtonTitles: nil   ];
+                                            
+                                            [loginFailAlert show];
+                                        }
+                                    }];
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    EmailSignupViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"emailsignup"];
-    //[self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)forgotPasswordTouchHandler:(id)sender {
+    [UIView animateWithDuration:0.3 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         opblack.alpha = 1;
+                     }
+                     completion:nil];
+    forgotShowing = YES;
+}
+
+- (void)showLoginTouchHandler:(id)sender {
+    [UIView animateWithDuration:0.3 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         opblack.alpha = 0;
+                     }
+                     completion:nil];
+    forgotShowing = NO;
+}
+
+- (void)sendPasswordTouchHandler:(id)sender {
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
+    indicator.center = self.view.center;
+    [self.view addSubview:indicator];
+    [indicator bringSubviewToFront:self.view];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
     
-    CATransition* transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.type = kCATransitionFade;
-    transition.subtype = kCATransitionFromBottom;
-    [self.view.window.layer addAnimation:transition forKey:kCATransition];
-    [self presentViewController:viewController animated:NO completion:nil];
+    [indicator startAnimating];
+    [PFUser requestPasswordResetForEmailInBackground:forgotPassText.text];
+    [UIView animateWithDuration:0.7 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         opblack.alpha = 0;
+                     }
+                     completion:nil];
+    forgotShowing = NO;
+    [indicator stopAnimating];
     
-    //viewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    //[self presentViewController:viewController animated:YES completion:nil];
+    UIAlertView *resetSent = [[UIAlertView alloc] initWithTitle: @"Link Sent!"
+                                                        message:@"Please check your email for a link to reset your password"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles: nil   ];
+    
+    [resetSent show];
 }
 
 - (void)BackTouchHandler:(id)sender {
-    //[self.navigationController popViewControllerAnimated:YES];
-    
     /*dismiss view controller back to landing view*/
     CATransition* transition = [CATransition animation];
     transition.duration = 0.5;
@@ -394,14 +533,14 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

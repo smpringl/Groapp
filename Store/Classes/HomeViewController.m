@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "LandingViewController.h"
 
 @interface HomeViewController ()
 
@@ -342,7 +343,10 @@ BOOL settingsShowing = NO;
     [PFUser logOut]; // Log out
     
     // Return to login page
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    LandingViewController *landcontroller = [storyboard instantiateViewControllerWithIdentifier:@"landingview"];
+    [self presentViewController:landcontroller animated:YES completion:nil];
 }
 
 

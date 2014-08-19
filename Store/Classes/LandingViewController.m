@@ -9,6 +9,7 @@
 #import "LandingViewController.h"
 #import "LoginViewController.h"
 #import "EmailSignupViewController.h"
+#import "HomeViewController.h"
 
 @interface LandingViewController ()
 
@@ -29,6 +30,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([PFUser currentUser]) // Check if user is already logged in or cached
+    {
+        NSLog(@"is a current user");
+        // Push the home view controller without animation
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        HomeViewController *hview = [storyboard instantiateViewControllerWithIdentifier:@"homeview"];
+        [self.navigationController pushViewController:hview animated:YES];
+    }
+    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     // Do any additional setup after loading the view.
     

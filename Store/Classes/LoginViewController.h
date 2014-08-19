@@ -31,4 +31,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *regularLog;
 
 @property (strong, nonatomic) IBOutlet UIButton *forgotpassowrd;
+
+@property (strong, nonatomic) IBOutlet UITextField *forgotPassText;
+@property (strong, nonatomic) IBOutlet UIButton *backToLogin;
 @end
