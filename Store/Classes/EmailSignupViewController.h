@@ -23,12 +23,10 @@
 @property (nonatomic, retain) NSString *ueUserFirstName;
 @property (nonatomic, retain) NSString *ueUserLastName;
 
-@property (strong, nonatomic) IBOutlet UITextField *fName;
-
-@property (weak, nonatomic) IBOutlet UITextField *FirstName;
-@property (weak, nonatomic) IBOutlet UITextField *LastName;
-@property (weak, nonatomic) IBOutlet UITextField *UserEmail;
-@property (weak, nonatomic) IBOutlet UITextField *UserPass;
-@property (weak, nonatomic) IBOutlet UITextField *ZipCode;
+@property (strong, nonatomic) IBOutlet UITextField *FirstName;
+@property (strong, nonatomic) IBOutlet UITextField *LastName;
+@property (strong, nonatomic) IBOutlet UITextField *UserEmail;
+@property (strong, nonatomic) IBOutlet UITextField *UserPass;
+@property (strong, nonatomic) IBOutlet UITextField *ZipCode;
 
 @end

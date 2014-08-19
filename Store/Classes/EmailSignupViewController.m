@@ -18,7 +18,7 @@
 @implementation EmailSignupViewController
 BOOL maleClicked = NO;
 BOOL femaleClicked = NO;
-@synthesize FirstName, LastName, UserEmail, UserPass, ZipCode, contentHolder, topHolder, facebookLog, ueUserEmail, ueUserFBID, ueUserFirstName, ueUserLastName, bottomHolder, maleBtn, femaleBtn, fName;
+@synthesize FirstName, LastName, UserEmail, UserPass, ZipCode, contentHolder, topHolder, facebookLog, ueUserEmail, ueUserFBID, ueUserFirstName, ueUserLastName, bottomHolder, maleBtn, femaleBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -102,50 +102,112 @@ BOOL femaleClicked = NO;
                                                      alpha:1.0f];
     [topHolder addSubview:facebookBorder];
     
+    /*first name field*/
     UIView *firstNameHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (bottomHolder.frame.size.width/2)-3, 40)];
     firstNameHolder.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]];
     [bottomHolder addSubview:firstNameHolder];
     
-    fName = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, firstNameHolder.frame.size.width-40, 40)];
-    [fName setBackgroundColor:[UIColor clearColor]];
-    fName.font = [UIFont systemFontOfSize:15];
-    fName.placeholder = @"Email";
-    fName.autocorrectionType = UITextAutocorrectionTypeNo;
-    fName.keyboardType = UIKeyboardTypeDefault;
-    fName.returnKeyType = UIReturnKeyDone;
-    fName.clearButtonMode = UITextFieldViewModeWhileEditing;
-    fName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    fName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+    FirstName = [[UITextField alloc] initWithFrame:CGRectMake(15, 0, firstNameHolder.frame.size.width-30, 40)];
+    [FirstName setBackgroundColor:[UIColor clearColor]];
+    FirstName.autocorrectionType = UITextAutocorrectionTypeNo;
+    FirstName.keyboardType = UIKeyboardTypeDefault;
+    FirstName.returnKeyType = UIReturnKeyDone;
+    FirstName.clearButtonMode = UITextFieldViewModeWhileEditing;
+    FirstName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    FirstName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
     UIColor *color = [UIColor darkGrayColor];
-    fName.attributedPlaceholder =
-    [[NSAttributedString alloc] initWithString:@"Email"
+    FirstName.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"First Name"
                                     attributes:@{
                                                  NSForegroundColorAttributeName: color,
-                                                 NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0]
+                                                 NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0]
                                                  }];
-    [self.fName setDelegate:self];
-    [fName addTarget:self
+    [self.FirstName setDelegate:self];
+    [FirstName addTarget:self
                        action:@selector(textFieldFinished:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
-    [firstNameHolder addSubview:fName];
+    [firstNameHolder addSubview:FirstName];
     
+    /*last name field*/
     UIView *lastNameHolder = [[UIView alloc] initWithFrame:CGRectMake((bottomHolder.frame.size.width/2)+3, 0, (bottomHolder.frame.size.width/2)-3, 40)];
     lastNameHolder.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]];
     [bottomHolder addSubview:lastNameHolder];
     
+    LastName = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, lastNameHolder.frame.size.width-20, 40)];
+    [LastName setBackgroundColor:[UIColor clearColor]];
+    LastName.autocorrectionType = UITextAutocorrectionTypeNo;
+    LastName.keyboardType = UIKeyboardTypeDefault;
+    LastName.returnKeyType = UIReturnKeyDone;
+    LastName.clearButtonMode = UITextFieldViewModeWhileEditing;
+    LastName.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    LastName.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    LastName.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"Last Name"
+                                    attributes:@{
+                                                 NSForegroundColorAttributeName: color,
+                                                 NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0]
+                                                 }];
+    [self.LastName setDelegate:self];
+    [LastName addTarget:self
+                  action:@selector(textFieldFinished:)
+        forControlEvents:UIControlEventEditingDidEndOnExit];
+    [lastNameHolder addSubview:LastName];
+    
+    /*email text field*/
     UIView *emailHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 46, bottomHolder.frame.size.width, 40)];
     emailHolder.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]];
     [bottomHolder addSubview:emailHolder];
     
+    UserEmail = [[UITextField alloc] initWithFrame:CGRectMake(15, 0, emailHolder.frame.size.width-30, 40)];
+    [UserEmail setBackgroundColor:[UIColor clearColor]];
+    UserEmail.autocorrectionType = UITextAutocorrectionTypeNo;
+    UserEmail.keyboardType = UIKeyboardTypeDefault;
+    UserEmail.returnKeyType = UIReturnKeyDone;
+    UserEmail.clearButtonMode = UITextFieldViewModeWhileEditing;
+    UserEmail.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    UserEmail.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    UserEmail.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"Email"
+                                    attributes:@{
+                                                 NSForegroundColorAttributeName: color,
+                                                 NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0]
+                                                 }];
+    [self.UserEmail setDelegate:self];
+    [UserEmail addTarget:self
+                 action:@selector(textFieldFinished:)
+       forControlEvents:UIControlEventEditingDidEndOnExit];
+    [emailHolder addSubview:UserEmail];
+    
+    /*password field*/
     UIView *passwordHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 92, bottomHolder.frame.size.width, 40)];
     passwordHolder.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]];
     [bottomHolder addSubview:passwordHolder];
+    
+    UserPass = [[UITextField alloc] initWithFrame:CGRectMake(15, 0, passwordHolder.frame.size.width-30, 40)];
+    [UserPass setBackgroundColor:[UIColor clearColor]];
+    UserPass.autocorrectionType = UITextAutocorrectionTypeNo;
+    UserPass.keyboardType = UIKeyboardTypeDefault;
+    UserPass.returnKeyType = UIReturnKeyDone;
+    UserPass.clearButtonMode = UITextFieldViewModeWhileEditing;
+    UserPass.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    UserPass.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    UserPass.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:@"Password"
+                                    attributes:@{
+                                                 NSForegroundColorAttributeName: color,
+                                                 NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Light" size:14.0]
+                                                 }];
+    [self.UserPass setDelegate:self];
+    [UserPass addTarget:self
+                  action:@selector(textFieldFinished:)
+        forControlEvents:UIControlEventEditingDidEndOnExit];
+    [passwordHolder addSubview:UserPass];
     
     maleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 138, (bottomHolder.frame.size.width/2)-3, 40)];
     [maleBtn setTitle:@"Male" forState:UIControlStateNormal];
     [maleBtn addTarget:self action:@selector(MaleTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [maleBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:14.0]];
-    [maleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [maleBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [maleBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]]];
     [maleBtn setImage:[self imageWithImage:[UIImage imageNamed:@"Ellipse.png"] scaledToSize:CGSizeMake(14,14)] forState:UIControlStateNormal];
     maleBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -maleBtn.imageView.frame.size.width, 0, maleBtn.imageView.frame.size.width+60);
@@ -156,7 +218,7 @@ BOOL femaleClicked = NO;
     [femaleBtn setTitle:@"Female" forState:UIControlStateNormal];
     [femaleBtn addTarget:self action:@selector(FemaleTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [femaleBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:14.0]];
-    [femaleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [femaleBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [femaleBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"transwhite.png"]]];
     [femaleBtn setImage:[self imageWithImage:[UIImage imageNamed:@"Ellipse.png"] scaledToSize:CGSizeMake(14,14)] forState:UIControlStateNormal];
     femaleBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -femaleBtn.imageView.frame.size.width, 0, femaleBtn.imageView.frame.size.width+60);
