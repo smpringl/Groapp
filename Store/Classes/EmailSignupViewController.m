@@ -18,7 +18,7 @@
 @implementation EmailSignupViewController
 BOOL maleClicked = NO;
 BOOL femaleClicked = NO;
-@synthesize FirstName, LastName, UserEmail, UserPass, ZipCode, contentHolder, topHolder, facebookLog, ueUserEmail, ueUserFBID, ueUserFirstName, ueUserLastName, bottomHolder, maleBtn, femaleBtn;
+@synthesize FirstName, LastName, UserEmail, UserPass, ZipCode, contentHolder, topHolder, facebookLog, ueUserEmail, ueUserFBID, ueUserFirstName, ueUserLastName, bottomHolder, maleBtn, femaleBtn, gender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,35 +31,28 @@ BOOL femaleClicked = NO;
 
 - (void)viewDidLoad
 {
-   [self.FirstName setDelegate:self];
-    [self.FirstName setReturnKeyType:UIReturnKeyDone];
+   
     [self.FirstName addTarget:self
                        action:@selector(textFieldFinished:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    [self.LastName setDelegate:self];
-    [self.LastName setReturnKeyType:UIReturnKeyDone];
     [self.LastName addTarget:self
                        action:@selector(textFieldFinished:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    [self.UserEmail setDelegate:self];
-    [self.UserEmail setReturnKeyType:UIReturnKeyDone];
     [self.UserEmail addTarget:self
                       action:@selector(textFieldFinished:)
             forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    [self.UserPass setDelegate:self];
-    [self.UserPass setReturnKeyType:UIReturnKeyDone];
     [self.UserPass addTarget:self
                        action:@selector(textFieldFinished:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    [self.ZipCode setDelegate:self];
+    /*[self.ZipCode setDelegate:self];
     [self.ZipCode setReturnKeyType:UIReturnKeyDone];
     [self.ZipCode addTarget:self
                       action:@selector(textFieldFinished:)
-            forControlEvents:UIControlEventEditingDidEndOnExit];
+            forControlEvents:UIControlEventEditingDidEndOnExit];*/
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -101,6 +94,12 @@ BOOL femaleClicked = NO;
                                                       blue:73.0f/255.0f
                                                      alpha:1.0f];
     [topHolder addSubview:facebookBorder];
+    
+    //THIS IS WHERE YOU LEFT OF, REBUILD THIS IMAGE AND INSERT..................................
+    UIImageView *orRegister = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, topHolder.frame.size.width, 30)];
+    orRegister.image = [UIImage imageNamed:(@"OR-REGISTER-WITH-EMAIL.png")];
+    orRegister.contentMode = UIViewContentModeScaleAspectFill;
+    [self.view addSubview:orRegister];
     
     /*first name field*/
     UIView *firstNameHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (bottomHolder.frame.size.width/2)-3, 40)];
@@ -190,6 +189,7 @@ BOOL femaleClicked = NO;
     UserPass.returnKeyType = UIReturnKeyDone;
     UserPass.clearButtonMode = UITextFieldViewModeWhileEditing;
     UserPass.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    UserPass.secureTextEntry = YES;//for password entry
     UserPass.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
     UserPass.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:@"Password"
@@ -296,7 +296,16 @@ BOOL femaleClicked = NO;
     NSString *lastname = LastName.text;
     NSString *usrpass = UserPass.text;
     NSString *usremail = UserEmail.text;
-    NSString *zcode = ZipCode.text;
+    
+    if (maleClicked == YES){
+        NSLog(@"user is male");
+        gender = @"Male";
+    }
+    else if (femaleClicked == YES){
+        NSLog(@"user is female");
+        gender = @"Female";
+    }
+    
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -314,7 +323,7 @@ BOOL femaleClicked = NO;
     // other fields can be set just like with PFObject
     user[@"firstname"] = firstname;
     user[@"lastname"] = lastname;
-    user[@"ZipCode"] = zcode;
+    user[@"gender"] = gender;
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
@@ -411,9 +420,26 @@ BOOL femaleClicked = NO;
     }
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+        [UIView animateWithDuration:0.2 delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             topHolder.alpha = 0.0f;
+                             contentHolder.frame = CGRectMake(0, -10, self.view.frame.size.width, 310);
+                         }
+                         completion:nil];
+}
+
 - (IBAction)textFieldFinished:(id)sender
 {
     // [sender resignFirstResponder];
+    [UIView animateWithDuration:0.3 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         topHolder.alpha = 1.0f;
+                         contentHolder.frame = CGRectMake(0, 80, self.view.frame.size.width, 310);
+                     }
+                     completion:nil];
 }
 
 - (void)BackTouchHandler:(id)sender {

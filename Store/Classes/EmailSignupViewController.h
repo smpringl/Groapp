@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString *ueUserEmail;
 @property (nonatomic, retain) NSString *ueUserFirstName;
 @property (nonatomic, retain) NSString *ueUserLastName;
+@property (nonatomic, retain) NSString *gender;
 
 @property (strong, nonatomic) IBOutlet UITextField *FirstName;
 @property (strong, nonatomic) IBOutlet UITextField *LastName;
