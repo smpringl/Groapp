@@ -16,7 +16,11 @@
 @end
 
 @implementation LandingViewController
-@synthesize backgroundview, opblack, logo, contentHolder, LoginBtn, RegisterBtn, pageMessage;
+BOOL frameOneShowing = YES;
+BOOL frameTwoShowing = NO;
+BOOL frameThreeShowing = NO;
+BOOL frameFourShowing = NO;
+@synthesize backgroundview, opblack, logo, contentHolder, LoginBtn, RegisterBtn, pageMessage, tutorialContainer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,9 +57,6 @@
     opblack.alpha = 0.05;
     [backgroundview addSubview:opblack];
     
-    /*contentHolder = [[UIView alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height-310)/2, self.view.frame.size.width, 310)];
-    [self.view addSubview:contentHolder];*/
-    
     logo = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-175)/2, 30, 175, 106)];
     logo.image = [UIImage imageNamed:(@"UrbnEarth_Login_Screen_Logo_NoWords.png")];
     logo.contentMode = UIViewContentModeScaleAspectFill;
@@ -63,14 +64,6 @@
     
     pageMessage = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width-300)/2, 136, 300, 25)];
     pageMessage.text = @"GOOD THINGS ARE GROWING";
-    /*fromLabel.font = customFont;
-    fromLabel.numberOfLines = 1;
-    fromLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines; // or UIBaselineAdjustmentAlignCenters, or UIBaselineAdjustmentNone
-    fromLabel.adjustsFontSizeToFitWidth = YES;
-    fromLabel.adjustsLetterSpacingToFitWidth = YES;
-    fromLabel.minimumScaleFactor = 10.0f/12.0f;
-    fromLabel.clipsToBounds = YES;
-    fromLabel.backgroundColor = [UIColor clearColor];*/
     pageMessage.textColor = [UIColor whiteColor];
     pageMessage.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:13.0];
     pageMessage.textAlignment = NSTextAlignmentCenter;
@@ -87,10 +80,6 @@
                                                    green:204.0f/255.0f
                                                     blue:59.0f/255.0f
                                                    alpha:1.0f]];
-    //[LoginBtn setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
-    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
-    //LoginBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
-    //LoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     [self.view addSubview:LoginBtn];
     
     
@@ -112,10 +101,6 @@
                                                  green:164.0f/255.0f
                                                   blue:218.0f/255.0f
                                                  alpha:1.0f]];
-    //[LoginBtn setImage:[self imageWithImage:[UIImage imageNamed:@"485-facebook@2x.png"] scaledToSize:CGSizeMake(15,15)] forState:UIControlStateNormal];
-    //CGFloat spacing = 5; // the amount of spacing to appear between image and title
-    //LoginBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, spacing);
-    //LoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
     [self.view addSubview:RegisterBtn];
     
     UIView *registerBorder = [[UIView alloc] initWithFrame:CGRectMake(0, RegisterBtn.frame.size.height-3, RegisterBtn.frame.size.width, 3)];
@@ -125,8 +110,167 @@
                                                   alpha:1.0f];
     [RegisterBtn addSubview:registerBorder];
     
+    tutorialContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 175, (self.view.frame.size.width*4), 200)];
+    [self.view addSubview:tutorialContainer];
     
+    UIView *tviewOne = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, tutorialContainer.frame.size.height)];
+    tviewOne.backgroundColor = [UIColor blueColor];
+    [tutorialContainer addSubview:tviewOne];
+    
+    UIView *tviewTwo = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, tutorialContainer.frame.size.height)];
+    tviewTwo.backgroundColor = [UIColor greenColor];
+    [tutorialContainer addSubview:tviewTwo];
+    
+    UIView *tviewThree = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width)*2, 0, self.view.frame.size.width, tutorialContainer.frame.size.height)];
+    tviewThree.backgroundColor = [UIColor redColor];
+    [tutorialContainer addSubview:tviewThree];
+    
+    UIView *tviewFour = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width)*3, 0, self.view.frame.size.width, tutorialContainer.frame.size.height)];
+    tviewFour.backgroundColor = [UIColor yellowColor];
+    [tutorialContainer addSubview:tviewFour];
+    
+    tutorialContainer.userInteractionEnabled = YES;
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [tutorialContainer addGestureRecognizer:swipeRight];
+    
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [tutorialContainer addGestureRecognizer:swipeLeft];
+    
+    [self frameShiftOne];
 }
+
+-(void)frameShiftOne {
+    [UIView animateWithDuration:0.2 delay:4.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         tutorialContainer.frame = CGRectMake(-(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                     }
+                     completion:^(BOOL finished) {
+                         [self frameShiftTwo];
+                     }];
+}
+
+-(void)frameShiftTwo {
+    [UIView animateWithDuration:0.2 delay:4.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         tutorialContainer.frame = CGRectMake(-2*(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                     }
+                     completion:^(BOOL finished) {
+                         [self frameShiftThree];
+                     }];
+}
+
+-(void)frameShiftThree {
+    [UIView animateWithDuration:0.2 delay:4.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         tutorialContainer.frame = CGRectMake(-3*(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                     }
+                     completion:^(BOOL finished) {
+                         [self frameShiftFour];
+                     }];
+}
+
+-(void)frameShiftFour {
+    [UIView animateWithDuration:0.5 delay:4.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         tutorialContainer.frame = CGRectMake(0, 175, self.view.frame.size.width*4, 200);
+                     }
+                     completion:^(BOOL finished) {
+                         [self frameShiftOne];
+                     }];
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)gesture
+{
+    
+    if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
+        NSLog(@"swiped right");
+        if (frameOneShowing == NO) {
+            if (frameTwoShowing == YES){
+                [UIView animateWithDuration:0.3
+                                 animations:^{
+                                     tutorialContainer.frame = CGRectMake(0, 175, self.view.frame.size.width*4, 200);
+                                 }];
+                frameOneShowing = YES;
+                frameTwoShowing = NO;
+                [self frameShiftOne];
+            }
+            else if (frameThreeShowing == YES) {
+                [UIView animateWithDuration:0.3
+                                 animations:^{
+                                     tutorialContainer.frame = CGRectMake(-(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                                 }];
+                frameTwoShowing = YES;
+                frameThreeShowing = NO;
+                [self frameShiftTwo];
+            }
+            else if (frameFourShowing) {
+                [UIView animateWithDuration:0.3
+                                 animations:^{
+                                     tutorialContainer.frame = CGRectMake(-2*(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                                 }];
+                frameThreeShowing = YES;
+                frameFourShowing = NO;
+                [self frameShiftThree];
+            }
+        }
+        else {
+            //do nothing
+        }
+    }
+    else if (gesture.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"swiped left");
+        if (frameFourShowing == NO) {
+            if (frameOneShowing == YES){
+                [UIView animateWithDuration:0.3
+                                 animations:^{
+                                     tutorialContainer.frame = CGRectMake(-(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                                 }];
+                frameTwoShowing = YES;
+                frameOneShowing = NO;
+                [self frameShiftTwo];
+            }
+            else if (frameTwoShowing == YES) {
+                [UIView animateWithDuration:0.3
+                                 animations:^{
+                                     tutorialContainer.frame = CGRectMake(-2*(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                                 }];
+                frameThreeShowing = YES;
+                frameTwoShowing = NO;
+                [self frameShiftThree];
+            }
+            else if (frameThreeShowing == YES) {
+                [UIView animateWithDuration:0.3
+                                 animations:^{
+                                     tutorialContainer.frame = CGRectMake(-3*(self.view.frame.size.width), 175, self.view.frame.size.width*4, 200);
+                                 }];
+                frameFourShowing = YES;
+                frameThreeShowing = NO;
+                [self frameShiftFour];
+            }
+        }
+        else {
+            //do nothing
+        }
+    }
+    else
+        NSLog(@"Unrecognized swipe direction");
+    
+    // Now animate the changing of the frame
+    
+    /*[UIView animateWithDuration:0.5
+                     animations:^{
+                         self.gridView.frame = frame;
+                     }];*/
+}
+
+
 
 - (void)LoginBtnTouchHandler:(id)sender {
     //[self.navigationController pushViewController:

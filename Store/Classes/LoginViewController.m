@@ -299,6 +299,7 @@ BOOL forgotShowing = NO;
     
 }
 
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     if (forgotShowing == NO) {
         [UIView animateWithDuration:0.2 delay:0

@@ -48,12 +48,6 @@ BOOL femaleClicked = NO;
                        action:@selector(textFieldFinished:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    /*[self.ZipCode setDelegate:self];
-    [self.ZipCode setReturnKeyType:UIReturnKeyDone];
-    [self.ZipCode addTarget:self
-                      action:@selector(textFieldFinished:)
-            forControlEvents:UIControlEventEditingDidEndOnExit];*/
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -99,7 +93,7 @@ BOOL femaleClicked = NO;
     UIImageView *orRegister = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, topHolder.frame.size.width, 30)];
     orRegister.image = [UIImage imageNamed:(@"OR-REGISTER-WITH-EMAIL.png")];
     orRegister.contentMode = UIViewContentModeScaleAspectFill;
-    [self.view addSubview:orRegister];
+    //[self.view addSubview:orRegister];
     
     /*first name field*/
     UIView *firstNameHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (bottomHolder.frame.size.width/2)-3, 40)];
@@ -425,7 +419,7 @@ BOOL femaleClicked = NO;
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              topHolder.alpha = 0.0f;
-                             contentHolder.frame = CGRectMake(0, -10, self.view.frame.size.width, 310);
+                             contentHolder.frame = CGRectMake(0, -10, self.view.frame.size.width, 370);
                          }
                          completion:nil];
 }
@@ -437,7 +431,7 @@ BOOL femaleClicked = NO;
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          topHolder.alpha = 1.0f;
-                         contentHolder.frame = CGRectMake(0, 80, self.view.frame.size.width, 310);
+                         contentHolder.frame = CGRectMake(0, 80, self.view.frame.size.width, 370);
                      }
                      completion:nil];
 }

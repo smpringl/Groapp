@@ -19,4 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *LoginBtn;
 @property (strong, nonatomic) IBOutlet UIButton *RegisterBtn;
 
+@property (nonatomic, retain) UIView *tutorialContainer;
+
 @end
