@@ -89,11 +89,18 @@ BOOL femaleClicked = NO;
                                                      alpha:1.0f];
     [topHolder addSubview:facebookBorder];
     
-    //THIS IS WHERE YOU LEFT OF, REBUILD THIS IMAGE AND INSERT..................................
-    UIImageView *orRegister = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, topHolder.frame.size.width, 30)];
+    UIView *leftDiv = [[UIView alloc] initWithFrame:CGRectMake(0, 64, ((topHolder.frame.size.width-140)/2)-5, 1)];
+    leftDiv.backgroundColor = [UIColor whiteColor];
+    [topHolder addSubview:leftDiv];
+    
+    UIImageView *orRegister = [[UIImageView alloc] initWithFrame:CGRectMake((topHolder.frame.size.width-140)/2, 60, 140, 8)];
     orRegister.image = [UIImage imageNamed:(@"OR-REGISTER-WITH-EMAIL.png")];
     orRegister.contentMode = UIViewContentModeScaleAspectFill;
-    //[self.view addSubview:orRegister];
+    [topHolder addSubview:orRegister];
+    
+    UIView *rightDiv = [[UIView alloc] initWithFrame:CGRectMake(((topHolder.frame.size.width-140)/2)+140+5, 64, ((topHolder.frame.size.width-140)/2)-5, 1)];
+    rightDiv.backgroundColor = [UIColor whiteColor];
+    [topHolder addSubview:rightDiv];
     
     /*first name field*/
     UIView *firstNameHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, (bottomHolder.frame.size.width/2)-3, 40)];
@@ -218,6 +225,14 @@ BOOL femaleClicked = NO;
     femaleBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -femaleBtn.imageView.frame.size.width, 0, femaleBtn.imageView.frame.size.width+60);
     femaleBtn.imageEdgeInsets = UIEdgeInsetsMake(0, femaleBtn.titleLabel.frame.size.width+60, 0, -femaleBtn.titleLabel.frame.size.width);
     [bottomHolder addSubview:femaleBtn];
+    
+    UILabel *disclaimer = [[UILabel alloc]initWithFrame:CGRectMake((bottomHolder.frame.size.width-200)/2, 185, 200, 40)];
+    disclaimer.text = @"By joining you agree to the Terms\n& Conditions and Privacy Policy";
+    disclaimer.textColor = [UIColor groupTableViewBackgroundColor];
+    disclaimer.numberOfLines = 2;
+    disclaimer.font = [UIFont fontWithName:@"Avenir-Black" size:10.0];
+    disclaimer.textAlignment = NSTextAlignmentCenter;
+    [bottomHolder addSubview:disclaimer];
     
     UIButton *RegisterBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 239, bottomHolder.frame.size.width, 45)];
     [RegisterBtn setTitle:@"CREATE ACCOUNT" forState:UIControlStateNormal];
@@ -357,8 +372,9 @@ BOOL femaleClicked = NO;
             
         } else {
             NSLog(@"User with facebook logged in!");
-            [self.navigationController pushViewController:
-             [HomeViewController alloc] animated:NO];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            HomeViewController *homecontroller = [storyboard instantiateViewControllerWithIdentifier:@"homeview"];
+            [self presentViewController:homecontroller animated:YES completion:nil];
         }
     }];
 }

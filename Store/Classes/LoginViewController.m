@@ -72,7 +72,7 @@ BOOL forgotShowing = NO;
     [translucentheader addSubview:headerlabel];
     [self.view addSubview:translucentheader];
     
-    contentHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 370)];
+    contentHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 380)];
      [self.view addSubview:contentHolder];
     
     topHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentHolder.frame.size.width, 160)];
@@ -213,7 +213,7 @@ BOOL forgotShowing = NO;
                                                      alpha:1.0f];
     [contentHolder addSubview:regBorder];
     
-    forgotpassowrd = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-200)/2, 340, 200, 30)];
+    forgotpassowrd = [[UIButton alloc] initWithFrame:CGRectMake((contentHolder.frame.size.width-200)/2, 350, 200, 30)];
     [forgotpassowrd setTitle:@"Forgot passowrd?" forState:UIControlStateNormal];
     [forgotpassowrd addTarget:self action:@selector(forgotPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [forgotpassowrd.titleLabel setFont:[UIFont fontWithName:@"Avenir-Black" size:12.0]];
@@ -237,7 +237,10 @@ BOOL forgotShowing = NO;
     UILabel *passHeader = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, forgotBox.frame.size.width, 50)];
     passHeader.text = @"Forgot Password?";
     passHeader.textColor = [UIColor whiteColor];
-    passHeader.backgroundColor = [UIColor blackColor];
+    passHeader.backgroundColor = [UIColor colorWithRed:77.0f/255.0f
+                                                 green:164.0f/255.0f
+                                                  blue:218.0f/255.0f
+                                                 alpha:1.0f];
     passHeader.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0];
     passHeader.textAlignment = NSTextAlignmentCenter;
     [forgotBox addSubview:passHeader];
@@ -284,14 +287,11 @@ BOOL forgotShowing = NO;
     [submitFP addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [submitFP.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:15.0]];
     [submitFP setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submitFP setBackgroundColor:[UIColor colorWithRed:54.0f/255.0f
-                                                 green:54.0f/255.0f
-                                                  blue:54.0f/255.0f
-                                                 alpha:1.0f]];
+    [submitFP setBackgroundColor:[UIColor grayColor]];
     [forgotBox addSubview:submitFP];
     
     backToLogin = [[UIButton alloc] initWithFrame:CGRectMake(0, 270, forgotBox.frame.size.width, 40)];
-    [backToLogin setTitle:@"Log in to Sovi" forState:UIControlStateNormal];
+    [backToLogin setTitle:@"Back to Log In" forState:UIControlStateNormal];
     [backToLogin addTarget:self action:@selector(showLoginTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [backToLogin.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:12.0]];
     [backToLogin setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -306,7 +306,7 @@ BOOL forgotShowing = NO;
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              topHolder.alpha = 0.0f;
-                             contentHolder.frame = CGRectMake(0, -100, self.view.frame.size.width, 310);
+                             contentHolder.frame = CGRectMake(0, -100, self.view.frame.size.width, 380);
                          }
                          completion:nil];
     }
@@ -324,7 +324,7 @@ BOOL forgotShowing = NO;
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              topHolder.alpha = 1.0f;
-                             contentHolder.frame = CGRectMake(0, 80, self.view.frame.size.width, 310);
+                             contentHolder.frame = CGRectMake(0, 80, self.view.frame.size.width, 380);
                          }
                          completion:nil];
     }
@@ -356,8 +356,9 @@ BOOL forgotShowing = NO;
             
         } else {
             NSLog(@"User with facebook logged in!");
-            [self.navigationController pushViewController:
-             [HomeViewController alloc] animated:NO];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            HomeViewController *homecontroller = [storyboard instantiateViewControllerWithIdentifier:@"homeview"];
+            [self presentViewController:homecontroller animated:YES completion:nil];
         }
     }];
 }
