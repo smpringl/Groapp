@@ -11,7 +11,6 @@
 @interface LandingViewController : UIViewController
 
 @property (strong, nonatomic) UIImageView *logo;
-@property (nonatomic, retain) UILabel *pageMessage;
 @property (nonatomic, retain) UIImageView *backgroundview;
 @property (nonatomic, retain) UIView *opblack;
 @property (nonatomic, retain) UIView *contentHolder;
@@ -20,5 +19,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *RegisterBtn;
 
 @property (nonatomic, retain) UIView *tutorialContainer;
+
+@property (nonatomic, retain) UIView *dotOne;
+@property (nonatomic, retain) UIView *dotTwo;
+@property (nonatomic, retain) UIView *dotThree;
+@property (nonatomic, retain) UIView *dotFour;
 
 @end
