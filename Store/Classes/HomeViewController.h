@@ -26,4 +26,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *myTask;
 @property (strong, nonatomic) NSString *usaname;
 
+@property (strong, nonatomic) UIWindow *storeWindow;
+@property (strong, nonatomic) UIView *storeview;
+
 @end

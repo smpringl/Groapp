@@ -81,25 +81,6 @@
             </objects>
             <point key="canvasLocation" x="2830" y="-22"/>
         </scene>
-        <!--Products View Controller-->
-        <scene sceneID="n4G-6j-jOC">
-            <objects>
-                <viewController id="2O6-Dj-OsU" customClass="PFProductsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SFb-gL-bGr"/>
-                        <viewControllerLayoutGuide type="bottom" id="KAC-Fu-sW3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="i1q-57-H0z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="uYA-YL-5sg"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="30B-FB-rvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3268" y="-22"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bod-NY-cbW">
             <objects>
