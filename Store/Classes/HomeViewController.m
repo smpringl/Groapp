@@ -73,70 +73,16 @@ BOOL settingsShowing = NO;
         }
     }];
     
-    
-    
-    /*[PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
-        
-            
-            // TODO find a way to fetch details with Twitter..
-            
-            NSString * requestString = [NSString stringWithFormat:@"https://api.twitter.com/1.1/users/show.json?screen_name=%@", user.username];
-            
-            
-            NSURL *verify = [NSURL URLWithString:requestString];
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:verify];
-            [[PFTwitterUtils twitter] signRequest:request];
-            NSURLResponse *response = nil;
-            NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                                 returningResponse:&response
-                                                             error:&error];
-            
-            
-            if ( error == nil){
-                NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-                NSLog(@"%@",result);
-                
-                [user setObject:[result objectForKey:@"profile_image_url_https"]
-                         forKey:@"picture"];
-                // does this thign help?
-                [user setUsername:[result objectForKey:@"screen_name"]];
-                
-                NSString * names = [result objectForKey:@"name"];
-                NSMutableArray * array = [NSMutableArray arrayWithArray:[names componentsSeparatedByString:@" "]];
-                if ( array.count > 1){
-                    [user setObject:[array lastObject]
-                             forKey:@"last_name"];
-                    
-                    [array removeLastObject];
-                    [user setObject:[array componentsJoinedByString:@" " ]
-                             forKey:@"first_name"];
-                }
-                
-                [user saveInBackground];
-            }
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:notificationUserDidLogin
-                                                                object:nil];
-            
-            return;
-        
-        
-        
-        
-    }];*/
-    
-    
-    
     bgPic = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    bgPic.image = [UIImage imageNamed:@"bg.jpg"];
+    bgPic.image = [UIImage imageNamed:@"Landing-Screen-bg.png"];
     bgPic.contentMode = UIViewContentModeScaleAspectFill;
     bgPic.clipsToBounds = YES;
     [self.view addSubview:bgPic];
     
-    UIView *transCover = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    /*UIView *transCover = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     transCover.backgroundColor = [UIColor blackColor];
     transCover.alpha = 0.7;
-    [self.view addSubview:transCover];
+    //[self.view addSubview:transCover];
     
     caseView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:caseView];
@@ -171,10 +117,7 @@ BOOL settingsShowing = NO;
     [settings setImage:[self imageWithImage:[UIImage imageNamed:@"740-gear@2x.png"] scaledToSize:CGSizeMake(24,24)] forState:UIControlStateNormal];
     [self.view addSubview:settings];
     
-    /*UIButton *seeConnections = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-50, 25, 40, 40)];
-     [seeConnections addTarget:self action:@selector(showConnections:) forControlEvents:UIControlEventTouchUpInside];
-     [seeConnections setImage:[self imageWithImage:[UIImage imageNamed:@"895-user-group@2x.png"] scaledToSize:CGSizeMake(32,22)] forState:UIControlStateNormal];
-     [self.view addSubview:seeConnections];*/
+    
     
     todoContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 350, self.view.frame.size.width, 70)];
     [caseView addSubview:todoContainer];
@@ -228,36 +171,79 @@ BOOL settingsShowing = NO;
     
     UIView *settingsDivider = [[UIView alloc] initWithFrame:CGRectMake(((settingsView.frame.size.width-250)/2), (settingsView.frame.size.height/2), 250, 1)];
     settingsDivider.backgroundColor = [UIColor darkGrayColor];
-    [settingsView addSubview:settingsDivider];
+    [settingsView addSubview:settingsDivider];*/
     
+    UIScrollView *mainView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    mainView.contentSize = CGSizeMake(self.view.frame.size.width, 800);
+    [self.view addSubview:mainView];
     
+    UIView *mainHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
+    mainHeader.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"transblack.png"]];
+    [self.view addSubview:mainHeader];
+    
+    UIButton *shopBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-60, 10, 60, 50)];
+    [shopBtn setTitle:@"SHOP" forState:UIControlStateNormal];
+    [shopBtn addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [shopBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:13.0]];
+    [shopBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //[shopBtn setBackgroundColor:[UIColor grayColor]];
+    [mainHeader addSubview:shopBtn];
+    
+    UIButton *optionsBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 60, 50)];
+    [optionsBtn addTarget:self action:@selector(showSettings:) forControlEvents:UIControlEventTouchUpInside];
+    [optionsBtn setImage:[self imageWithImage:[UIImage imageNamed:@"listicon.png"] scaledToSize:CGSizeMake(21,15)] forState:UIControlStateNormal];
+    optionsBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
+    [mainHeader addSubview:optionsBtn];
+    
+    UIButton *careGuideBtn = [[UIButton alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 65, 300, 40)];
+    [careGuideBtn setTitle:@"CARE GUIDE" forState:UIControlStateNormal];
+    [careGuideBtn addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    //[careGuideBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:13.0]];
+    [careGuideBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
+    [careGuideBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [careGuideBtn setBackgroundColor:[UIColor redColor]];
+    careGuideBtn.layer.cornerRadius = 2;
+    [mainView addSubview:careGuideBtn];
+    
+    UIImageView *urbMat = [[UIImageView alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 110, 300, 154)];
+    urbMat.image = [UIImage imageNamed:@"urbmat.png"];
+    urbMat.contentMode = UIViewContentModeScaleAspectFill;
+    urbMat.clipsToBounds = YES;
+    urbMat.layer.cornerRadius = 2;
+    [mainView addSubview:urbMat];
+    
+    UIView *tileHolder = [[UIView alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 269, 300, 400)];
+    [mainView addSubview:tileHolder];
+    
+    UIImageView *tileOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 148, 148)];
+    tileOne.image = [UIImage imageNamed:@"tileOne.png"];
+    tileOne.contentMode = UIViewContentModeScaleAspectFill;
+    tileOne.clipsToBounds = YES;
+    tileOne.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileOne];
+    
+    UIImageView *tileTwo = [[UIImageView alloc] initWithFrame:CGRectMake(152, 0, 148, 148)];
+    tileTwo.image = [UIImage imageNamed:@"tileTwo.png"];
+    tileTwo.contentMode = UIViewContentModeScaleAspectFill;
+    tileTwo.clipsToBounds = YES;
+    tileTwo.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileTwo];
+    
+    UIImageView *tileThree = [[UIImageView alloc] initWithFrame:CGRectMake(0, 153, 148, 148)];
+    tileThree.image = [UIImage imageNamed:@"tileThree.png"];
+    tileThree.contentMode = UIViewContentModeScaleAspectFill;
+    tileThree.clipsToBounds = YES;
+    tileThree.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileThree];
+    
+    UIImageView *tileFour = [[UIImageView alloc] initWithFrame:CGRectMake(152, 153, 148, 148)];
+    tileFour.image = [UIImage imageNamed:@"tileFour.png"];
+    tileFour.contentMode = UIViewContentModeScaleAspectFill;
+    tileFour.clipsToBounds = YES;
+    tileFour.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileFour];
 }
 
-/*- (void)storeFacebookData {
-    [FBRequestConnection
-     startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-         if (!error) {
-             NSLog(@"startedfbdrop");
-             NSString *name = [result objectForKey:@"first_name"];
-             usaname = name;
-             NSLog(usaname);
-             [self storeUserData];
-         }
-     }];
-    
-}
-
-- (void)storeUserData {
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        
-        NSLog(@"madeithere");
-        currentUser[@"firstname"] = usaname;
-        [[PFUser currentUser] saveInBackground];
-    } else {
-        
-    }
-}*/
 
 // Called every time a chunk of the data is received
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {

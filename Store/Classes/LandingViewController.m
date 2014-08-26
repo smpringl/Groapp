@@ -16,10 +16,6 @@
 @end
 
 @implementation LandingViewController
-BOOL frameOneShowing = YES;
-BOOL frameTwoShowing = NO;
-BOOL frameThreeShowing = NO;
-BOOL frameFourShowing = NO;
 BOOL userSwiped = NO;
 @synthesize backgroundview, opblack, logo, contentHolder, LoginBtn, RegisterBtn, tutorialContainer, dotOne, dotTwo, dotThree, dotFour;
 
