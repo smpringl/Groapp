@@ -260,7 +260,7 @@ BOOL settingsShowing = NO;
 }
 
 -(void)showSettings:(id)sender{
-    if (settingsShowing == NO){
+    /*if (settingsShowing == NO){
         [UIView animateWithDuration:0.3 delay:0
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
@@ -279,7 +279,14 @@ BOOL settingsShowing = NO;
                          }
                          completion:nil];
         settingsShowing = NO;
-    }
+    }*/
+    [PFUser logOut]; // Log out
+    
+    // Return to login page
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    LandingViewController *landcontroller = [storyboard instantiateViewControllerWithIdentifier:@"landingview"];
+    [self presentViewController:landcontroller animated:YES completion:nil];
 }
 
 -(void)userLogout:(id)sender{
