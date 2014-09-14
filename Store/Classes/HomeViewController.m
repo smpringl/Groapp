@@ -9,6 +9,8 @@
 #import "HomeViewController.h"
 #import "LandingViewController.h"
 #import "PFProductsViewController.h"
+#import "Helpshift.h"
+#import "TimerViewController.h"
 
 @interface HomeViewController ()
 
@@ -103,7 +105,14 @@ BOOL settingsShowing = NO;
     optionsBtn.imageEdgeInsets = UIEdgeInsetsMake(2, 0, 0, 0);
     [mainHeader addSubview:optionsBtn];
     
-    UIButton *careGuideBtn = [[UIButton alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 65, 300, 40)];
+    UIImageView *careGuide = [[UIImageView alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 60, 300, 40)];
+    careGuide.image = [UIImage imageNamed:@"care-guide-wood-button.png"];
+    careGuide.contentMode = UIViewContentModeScaleAspectFill;
+    careGuide.clipsToBounds = YES;
+    careGuide.layer.cornerRadius = 2;
+    [mainView addSubview:careGuide];
+    
+    UIButton *careGuideBtn = [[UIButton alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 60, 300, 40)];
     [careGuideBtn setTitle:@"CARE GUIDE" forState:UIControlStateNormal];
     [careGuideBtn addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     //[careGuideBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:13.0]];
@@ -111,45 +120,75 @@ BOOL settingsShowing = NO;
     [careGuideBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [careGuideBtn setBackgroundColor:[UIColor redColor]];
     careGuideBtn.layer.cornerRadius = 2;
-    [mainView addSubview:careGuideBtn];
+    //[mainView addSubview:careGuideBtn];
     
-    UIImageView *urbMat = [[UIImageView alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 110, 300, 154)];
-    urbMat.image = [UIImage imageNamed:@"urbmat.png"];
+    UIImageView *urbMat = [[UIImageView alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 105, 300, 154)];
+    urbMat.image = [UIImage imageNamed:@"my-urbmat-button.png"];
     urbMat.contentMode = UIViewContentModeScaleAspectFill;
     urbMat.clipsToBounds = YES;
     urbMat.layer.cornerRadius = 2;
     [mainView addSubview:urbMat];
     
-    UIView *tileHolder = [[UIView alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 269, 300, 400)];
+    UIButton *urbMatBtn = [[UIButton alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 105, 300, 154)];
+    [urbMatBtn addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    //[urbMatBtn setBackgroundColor:[UIColor redColor]];
+    urbMatBtn.layer.cornerRadius = 2;
+    [mainView addSubview:urbMatBtn];
+    
+    UIView *tileHolder = [[UIView alloc] initWithFrame:CGRectMake((mainView.frame.size.width-300)/2, 264, 300, 400)];
     [mainView addSubview:tileHolder];
     
     UIImageView *tileOne = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 148, 148)];
-    tileOne.image = [UIImage imageNamed:@"tileOne.png"];
+    tileOne.image = [UIImage imageNamed:@"calendar-button.png"];
     tileOne.contentMode = UIViewContentModeScaleAspectFill;
     tileOne.clipsToBounds = YES;
     tileOne.layer.cornerRadius = 2;
     [tileHolder addSubview:tileOne];
     
+    UIButton *tileOneBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 148, 148)];
+    [tileOneBtn addTarget:self action:@selector(timerBtnTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    //[tileOneBtn setBackgroundColor:[UIColor blueColor]];
+    tileOneBtn.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileOneBtn];
+    
     UIImageView *tileTwo = [[UIImageView alloc] initWithFrame:CGRectMake(152, 0, 148, 148)];
-    tileTwo.image = [UIImage imageNamed:@"tileTwo.png"];
+    tileTwo.image = [UIImage imageNamed:@"recipes-button.png"];
     tileTwo.contentMode = UIViewContentModeScaleAspectFill;
     tileTwo.clipsToBounds = YES;
     tileTwo.layer.cornerRadius = 2;
     [tileHolder addSubview:tileTwo];
     
+    UIButton *tileTwoBtn = [[UIButton alloc] initWithFrame:CGRectMake(152, 0, 148, 148)];
+    [tileTwoBtn addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    //[tileTwoBtn setBackgroundColor:[UIColor yellowColor]];
+    tileTwoBtn.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileTwoBtn];
+    
     UIImageView *tileThree = [[UIImageView alloc] initWithFrame:CGRectMake(0, 153, 148, 148)];
-    tileThree.image = [UIImage imageNamed:@"tileThree.png"];
+    tileThree.image = [UIImage imageNamed:@"support-button.png"];
     tileThree.contentMode = UIViewContentModeScaleAspectFill;
     tileThree.clipsToBounds = YES;
     tileThree.layer.cornerRadius = 2;
     [tileHolder addSubview:tileThree];
     
+    UIButton *tileThreeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 153, 148, 148)];
+    [tileThreeBtn addTarget:self action:@selector(supportBtnTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    //[tileThreeBtn setBackgroundColor:[UIColor orangeColor]];
+    tileThreeBtn.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileThreeBtn];
+    
     UIImageView *tileFour = [[UIImageView alloc] initWithFrame:CGRectMake(152, 153, 148, 148)];
-    tileFour.image = [UIImage imageNamed:@"tileFour.png"];
+    tileFour.image = [UIImage imageNamed:@"community-button.png"];
     tileFour.contentMode = UIViewContentModeScaleAspectFill;
     tileFour.clipsToBounds = YES;
     tileFour.layer.cornerRadius = 2;
     [tileHolder addSubview:tileFour];
+    
+    UIButton *tileFourBtn = [[UIButton alloc] initWithFrame:CGRectMake(152, 153, 148, 148)];
+    [tileFourBtn addTarget:self action:@selector(sendPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    //[tileFourBtn setBackgroundColor:[UIColor greenColor]];
+    tileFourBtn.layer.cornerRadius = 2;
+    [tileHolder addSubview:tileFourBtn];
 }
 
 -(void)shopTouchHandler:(id)sender{
@@ -207,6 +246,25 @@ BOOL settingsShowing = NO;
                          storeWindow.hidden = YES;
                      }];
     
+}
+
+-(void)timerBtnTouchHandler:(id)sender{
+    NSLog(@"timer clicked");
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    TimerViewController *timercontroller = [storyboard instantiateViewControllerWithIdentifier:@"timerview"];
+    [self presentViewController:timercontroller animated:YES completion:nil];
+}
+
+
+-(void)supportBtnTouchHandler:(id)sender{
+    
+    
+    // NOTE: Move the line below to wherever you would like the Helpshift chat screen
+    // to open. E.g. a contact button in your app settings
+    // UNCOMMENT THIS LINE FOR CONTACT [[Helpshift sharedInstance] showConversation:self withOptions:nil];
+    
+    [[Helpshift sharedInstance] showFAQs:self withOptions:nil];
 }
 
 

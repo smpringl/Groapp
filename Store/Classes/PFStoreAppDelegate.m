@@ -8,6 +8,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "PFProductsViewController.h"
 #import "PFStoreAppDelegate.h"
+#import "Helpshift.h"
 
 @implementation PFStoreAppDelegate
 
@@ -26,6 +27,10 @@
     UINavigationController *rootController = [[UINavigationController alloc] initWithRootViewController:[[PFProductsViewController alloc] init]];
     rootController.navigationBar.hidden = YES;
     self.window.rootViewController = rootController;*/
+    
+    
+    [Helpshift installForApiKey:@"9667f11cc2fbd9f3cdc39deb2a4e4eca" domainName:@"urbnearthtest.helpshift.com" appID:@"urbnearthtest_platform_20140914053527150-0d1f62e2f389254"];
+    
     
     return YES;
 }

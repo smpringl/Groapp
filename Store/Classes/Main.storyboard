@@ -81,6 +81,35 @@
             </objects>
             <point key="canvasLocation" x="2830" y="-22"/>
         </scene>
+        <!--Timer View Controller-->
+        <scene sceneID="nBc-kK-sAR">
+            <objects>
+                <viewController storyboardIdentifier="timerview" id="rTh-IE-vKB" customClass="TimerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CsS-vs-9EI"/>
+                        <viewControllerLayoutGuide type="bottom" id="kWU-tl-DdB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="laT-u8-hvB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shake to start timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXp-Dn-9rz">
+                                <rect key="frame" x="56" y="229" width="203" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="myCounterLabel" destination="hXp-Dn-9rz" id="nuW-dz-ejl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FbB-og-fSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2830" y="675"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bod-NY-cbW">
             <objects>
