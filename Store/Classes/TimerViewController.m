@@ -13,7 +13,11 @@
 @end
 
 @implementation TimerViewController
-@synthesize myCounterLabel;
+@synthesize myCounterLabel, offBtn, fiveMinBtn, tenMinBtn;
+BOOL timerRunning = NO;
+BOOL fiveTimer = YES;
+BOOL tenTimer = NO;
+BOOL offBtnSelected = NO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,9 +61,9 @@ int secondsLeft;
     UIView *buttonholder = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-240)/2, self.view.frame.size.height-100, 240, 100)];
     [self.view addSubview:buttonholder];
     
-    UIButton *offBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60,60)];
+    offBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60,60)];
     [offBtn setTitle:@"OFF" forState:UIControlStateNormal];
-    [offBtn addTarget:self action:@selector(forgotPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [offBtn addTarget:self action:@selector(offBtnTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [offBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0]];
     offBtn.layer.cornerRadius = 30.0f;
     [offBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -67,9 +71,9 @@ int secondsLeft;
     [[offBtn layer] setBorderColor:[UIColor lightGrayColor].CGColor];
     [buttonholder addSubview:offBtn];
     
-    UIButton *fiveMinBtn = [[UIButton alloc] initWithFrame:CGRectMake((buttonholder.frame.size.width/2)-30, 0, 60,60)];
+    fiveMinBtn = [[UIButton alloc] initWithFrame:CGRectMake((buttonholder.frame.size.width/2)-30, 0, 60,60)];
     [fiveMinBtn setTitle:@"5m" forState:UIControlStateNormal];
-    [fiveMinBtn addTarget:self action:@selector(forgotPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [fiveMinBtn addTarget:self action:@selector(fiveBtnTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [fiveMinBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0]];
     fiveMinBtn.layer.cornerRadius = 30.0f;
     [fiveMinBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -81,9 +85,9 @@ int secondsLeft;
                                                alpha:1.0f]];
     [buttonholder addSubview:fiveMinBtn];
     
-    UIButton *tenMinBtn = [[UIButton alloc] initWithFrame:CGRectMake(buttonholder.frame.size.width-60, 0, 60,60)];
+    tenMinBtn = [[UIButton alloc] initWithFrame:CGRectMake(buttonholder.frame.size.width-60, 0, 60,60)];
     [tenMinBtn setTitle:@"10m" forState:UIControlStateNormal];
-    [tenMinBtn addTarget:self action:@selector(forgotPasswordTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
+    [tenMinBtn addTarget:self action:@selector(tenBtnTouchHandler:) forControlEvents:UIControlEventTouchUpInside];
     [tenMinBtn.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0]];
     tenMinBtn.layer.cornerRadius = 30.0f;
     [tenMinBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -91,30 +95,79 @@ int secondsLeft;
     [[tenMinBtn layer] setBorderColor:[UIColor lightGrayColor].CGColor];
     [buttonholder addSubview:tenMinBtn];
     
-    secondsLeft = 16925;
-    [self countdownTimer];
 }
 
 - (void)BackTouchHandler:(id)sender {
+    [timer invalidate];
+    timerRunning = NO;
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)offBtnTouchHandler:(id)sender {
+    [offBtn setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                  green:132.0f/255.0f
+                                                   blue:38.0f/255.0f
+                                                  alpha:1.0f]];
+    [fiveMinBtn setBackgroundColor:[UIColor clearColor]];
+    [tenMinBtn setBackgroundColor:[UIColor clearColor]];
+    fiveTimer = NO;
+    tenTimer = NO;
+    offBtnSelected = YES;
+    timerRunning = NO;
+    [timer invalidate];
+    myCounterLabel.text = @"Ended Early...";
+}
+
+- (void)fiveBtnTouchHandler:(id)sender {
+    [fiveMinBtn setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                   green:132.0f/255.0f
+                                                    blue:38.0f/255.0f
+                                                   alpha:1.0f]];
+    [tenMinBtn setBackgroundColor:[UIColor clearColor]];
+    [offBtn setBackgroundColor:[UIColor clearColor]];
+    fiveTimer = YES;
+    tenTimer = NO;
+    offBtnSelected = NO;
+}
+
+- (void)tenBtnTouchHandler:(id)sender {
+    [tenMinBtn setBackgroundColor:[UIColor colorWithRed:245.0f/255.0f
+                                                   green:132.0f/255.0f
+                                                    blue:38.0f/255.0f
+                                                   alpha:1.0f]];
+    [fiveMinBtn setBackgroundColor:[UIColor clearColor]];
+    [offBtn setBackgroundColor:[UIColor clearColor]];
+    fiveTimer = NO;
+    tenTimer = YES;
+    offBtnSelected = NO;
+}
+
 - (void)updateCounter:(NSTimer *)theTimer {
+    if (timerRunning == YES) {
     if(secondsLeft > 0 ){
         secondsLeft -- ;
-        hours = secondsLeft / 3600;
+        //hours = secondsLeft / 3600;
         minutes = (secondsLeft % 3600) / 60;
         seconds = (secondsLeft %3600) % 60;
-        myCounterLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", hours, minutes, seconds];
+        myCounterLabel.text = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
     }
     else{
-        secondsLeft = 16925;
+        timerRunning = NO;
+        [timer invalidate];
+        NSLog(@"Timer Finished!");
+        myCounterLabel.text = @"All Done!";
+    }
     }
 }
 
 -(void)countdownTimer{
+    if (fiveTimer == YES) {
+        secondsLeft = 300;
+    }
+    else if (tenTimer == YES) {
+        secondsLeft = 600;
+    }
     
-    secondsLeft = hours = minutes = seconds = 0;
     if([timer isValid])
     {
         //[timer release];
@@ -139,6 +192,28 @@ int secondsLeft;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (UIEventSubtypeMotionShake) {
+        NSLog(@"I'm shaking!");
+        if (timerRunning == NO) {
+            if (offBtnSelected == NO) {
+            timerRunning = YES;
+            [self countdownTimer];
+            }
+            else {
+                NSLog(@"Timer is off!");
+            }
+        }
+        else {
+            NSLog(@"Timer Already Running");
+        }
+    }
 }
 
 /*

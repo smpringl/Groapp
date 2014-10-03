@@ -884,6 +884,11 @@
 				CLASSPREFIX = PF;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Parse Inc.";
+				TargetAttributes = {
+					4918FAA616DC4A5400C663F8 = {
+						DevelopmentTeam = V2TTYDL6B7;
+					};
+				};
 			};
 			buildConfigurationList = 4918FAA216DC4A5400C663F8 /* Build configuration list for PBXProject "UrbnEarth" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1196,6 +1201,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1221,8 +1227,8 @@
 		4918FAC616DC4A5400C663F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",

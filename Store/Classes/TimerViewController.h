@@ -18,4 +18,8 @@
 -(void)updateCounter:(NSTimer *)theTimer;
 -(void)countdownTimer;
 
+@property (strong, nonatomic) IBOutlet UIButton *offBtn;
+@property (strong, nonatomic) IBOutlet UIButton *fiveMinBtn;
+@property (strong, nonatomic) IBOutlet UIButton *tenMinBtn;
+
 @end
