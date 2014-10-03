@@ -7,17 +7,19 @@
 //
 
 #import "TimerViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface TimerViewController ()
 
 @end
 
 @implementation TimerViewController
-@synthesize myCounterLabel, offBtn, fiveMinBtn, tenMinBtn;
+@synthesize myCounterLabel, offBtn, fiveMinBtn, tenMinBtn, introBox;
 BOOL timerRunning = NO;
 BOOL fiveTimer = YES;
 BOOL tenTimer = NO;
 BOOL offBtnSelected = NO;
+BOOL cancelled = NO;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,7 +57,7 @@ int secondsLeft;
     [self.view addSubview:headerlabel];
     
     myCounterLabel.textColor = [UIColor whiteColor];
-    myCounterLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0];
+    myCounterLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:40.0];
     [self.view addSubview:myCounterLabel];
     
     UIView *buttonholder = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-240)/2, self.view.frame.size.height-100, 240, 100)];
@@ -95,11 +97,20 @@ int secondsLeft;
     [[tenMinBtn layer] setBorderColor:[UIColor lightGrayColor].CGColor];
     [buttonholder addSubview:tenMinBtn];
     
+    introBox = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, 80, 200, 255)];
+    introBox.image = [UIImage imageNamed:@"Popup-Window.png"];
+    introBox.contentMode = UIViewContentModeScaleAspectFill;
+    [self.view addSubview:introBox];
+    
 }
 
 - (void)BackTouchHandler:(id)sender {
     [timer invalidate];
     timerRunning = NO;
+    offBtnSelected = NO;
+    tenTimer = NO;
+    fiveTimer = YES;
+    myCounterLabel.text = @"";
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -115,7 +126,8 @@ int secondsLeft;
     offBtnSelected = YES;
     timerRunning = NO;
     [timer invalidate];
-    myCounterLabel.text = @"Ended Early...";
+    myCounterLabel.text = @"";
+    introBox.alpha = 1.0f;
 }
 
 - (void)fiveBtnTouchHandler:(id)sender {
@@ -154,27 +166,64 @@ int secondsLeft;
     else{
         timerRunning = NO;
         [timer invalidate];
+        
         NSLog(@"Timer Finished!");
-        myCounterLabel.text = @"All Done!";
+        myCounterLabel.text = @"";
+        introBox.alpha = 1.0f;
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Timer finished!"
+                                                     message:@"Turn of your water"
+                                                    delegate:self
+                                           cancelButtonTitle:nil
+                                           otherButtonTitles:@"OK", nil];
+        [av show];
+        [self startVibrate];
     }
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+        if (buttonIndex == 0)
+        {
+            cancelled = YES;
+            NSLog(@"User Acknowledges Timer End!");
+        }
+}
+
 -(void)countdownTimer{
-    if (fiveTimer == YES) {
-        secondsLeft = 300;
+    if (offBtnSelected == NO) {
+        cancelled = NO;
+        if (fiveTimer == YES) {
+            secondsLeft = 300;
+        }
+        else if (tenTimer == YES) {
+            secondsLeft = 600;
+            
+        }
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             introBox.alpha = 0.0f;
+                         }
+                         completion:^(BOOL finished) {
+                             timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
+                         }];
+        
     }
-    else if (tenTimer == YES) {
-        secondsLeft = 600;
+    else {
+        NSLog(@"Do Nothing!");
     }
-    
-    if([timer isValid])
-    {
-        //[timer release];
+}
+
+- (void)startVibrate{
+    viber = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(vibrating:) userInfo:nil repeats:YES];
+}
+
+- (void)vibrating:(id)sender{
+    if (cancelled == NO) {
+        AudioServicesPlaySystemSound (1352);
     }
-    //NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updateCounter:) userInfo:nil repeats:YES];
-    //[pool release];
+    else if (cancelled == YES) {
+        [viber invalidate];
+    }
 }
 
 -(UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {

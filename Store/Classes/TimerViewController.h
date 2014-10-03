@@ -12,6 +12,8 @@
     
     NSTimer *timer;
     IBOutlet UILabel *myCounterLabel;
+    
+    NSTimer *viber;
 }
 
 @property (nonatomic, retain) UILabel *myCounterLabel;
@@ -21,5 +23,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *offBtn;
 @property (strong, nonatomic) IBOutlet UIButton *fiveMinBtn;
 @property (strong, nonatomic) IBOutlet UIButton *tenMinBtn;
+@property (strong, nonatomic) IBOutlet UIImageView *introBox;
 
 @end

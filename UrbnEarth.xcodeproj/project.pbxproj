@@ -110,6 +110,7 @@
 		606297AA19A3063F00C00B49 /* Ellipse-Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 606297A919A3063F00C00B49 /* Ellipse-Green.png */; };
 		606297AC19A3064800C00B49 /* Ellipse.png in Resources */ = {isa = PBXBuildFile; fileRef = 606297AB19A3064800C00B49 /* Ellipse.png */; };
 		60A54E0919948EBB00BA8846 /* EmailSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */; };
+		60BC7E9919DF3E5C00DEDEEC /* Popup-Window.png in Resources */ = {isa = PBXBuildFile; fileRef = 60BC7E9819DF3E5C00DEDEEC /* Popup-Window.png */; };
 		60C9329919C562C700979A5B /* calendar-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 60C9329819C562C700979A5B /* calendar-button.png */; };
 		60C9329B19C5636200979A5B /* recipes-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 60C9329A19C5636200979A5B /* recipes-button.png */; };
 		60C9329D19C563F500979A5B /* support-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 60C9329C19C563F500979A5B /* support-button.png */; };
@@ -338,6 +339,7 @@
 		606297AB19A3064800C00B49 /* Ellipse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ellipse.png; sourceTree = "<group>"; };
 		60A54E0719948EBB00BA8846 /* EmailSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailSignupViewController.h; sourceTree = "<group>"; };
 		60A54E0819948EBB00BA8846 /* EmailSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailSignupViewController.m; sourceTree = "<group>"; };
+		60BC7E9819DF3E5C00DEDEEC /* Popup-Window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Popup-Window.png"; sourceTree = "<group>"; };
 		60C9329819C562C700979A5B /* calendar-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-button.png"; sourceTree = "<group>"; };
 		60C9329A19C5636200979A5B /* recipes-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recipes-button.png"; sourceTree = "<group>"; };
 		60C9329C19C563F500979A5B /* support-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "support-button.png"; sourceTree = "<group>"; };
@@ -694,6 +696,7 @@
 		4999CBEA16DD599900C6C8FC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				60BC7E9819DF3E5C00DEDEEC /* Popup-Window.png */,
 				60C932A219C5664F00979A5B /* care-guide-wood-button.png */,
 				60C932A019C5654D00979A5B /* my-urbmat-button.png */,
 				60C9329E19C564D400979A5B /* community-button.png */,
@@ -1047,6 +1050,7 @@
 				D969D6B716E171BE00135DC1 /* Product@2x.png in Resources */,
 				6028A3591998AE20001A42A1 /* UrbnEarth_Login_Screen_Logo_NoWords.png in Resources */,
 				60C932D119C56C9200979A5B /* HS-background-tile.png in Resources */,
+				60BC7E9919DF3E5C00DEDEEC /* Popup-Window.png in Resources */,
 				D969D6B816E171BE00135DC1 /* ShippingHeader.png in Resources */,
 				60C932E719C56C9200979A5B /* HSTutorialiPad.png in Resources */,
 				60C9329D19C563F500979A5B /* support-button.png in Resources */,
