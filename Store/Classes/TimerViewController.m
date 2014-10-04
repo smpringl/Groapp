@@ -97,7 +97,7 @@ int secondsLeft;
     [[tenMinBtn layer] setBorderColor:[UIColor lightGrayColor].CGColor];
     [buttonholder addSubview:tenMinBtn];
     
-    introBox = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, 80, 200, 255)];
+    introBox = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, ((self.view.frame.size.height-255)/2)-30, 200, 255)];
     introBox.image = [UIImage imageNamed:@"Popup-Window.png"];
     introBox.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:introBox];
